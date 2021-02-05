@@ -68,17 +68,30 @@ const mnextBtn = document.querySelector('#mnextBtn');
 const movieList = document.querySelector('.movie-list');
 const movieListItems = document.querySelectorAll('.movie-list-item');
 const moviepanelsize = movieListItems[0].clientWidth;
-
+let shiftFlag = false;
 mprevBtn.addEventListener('click', () => {
   console.log('prev');
   movieList.style.transform = 'translateX(' + -moviepanelsize * 0 + 'px)';
-  mnextBtn.classList.toggle('hide');
-  mprevBtn.classList.toggle('hide');
+  mnextBtn.classList.remove('hide');
+  mprevBtn.classList.add('hide');
 });
 
 mnextBtn.addEventListener('click', () => {
   console.log('next');
   movieList.style.transform = 'translateX(' + -moviepanelsize * 5.55 + 'px)';
-  mnextBtn.classList.toggle('hide');
-  mprevBtn.classList.toggle('hide');
+  mnextBtn.classList.add('hide');
+  mprevBtn.classList.remove('hide');
+});
+const viewAll = document.querySelector('#viewAll');
+viewAll.addEventListener('click', () => {
+  movieList.style.transform = 'translateX(' + -moviepanelsize * 0 + 'px)';
+  shiftFlag = !shiftFlag;
+  if (shiftFlag == true) {
+    mnextBtn.classList.add('hide');
+    mprevBtn.classList.add('hide');
+  } else if (shiftFlag == false) {
+    mprevBtn.classList.add('hide');
+    mnextBtn.classList.remove('hide');
+  }
+  movieList.classList.toggle('wrap');
 });

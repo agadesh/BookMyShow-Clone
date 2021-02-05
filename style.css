@@ -187,6 +187,7 @@ input[type='radio'] {
   color: #354141;
 }
 .m-link {
+  cursor: pointer;
   font-size: 0.8em;
   color: #f84464;
 }
@@ -194,7 +195,7 @@ input[type='radio'] {
   font-size: 0.5em;
 }
 .movie-list-wrapper {
-  margin: 10px 16%;
+  margin: 0px 16%;
   position: relative;
   overflow: hidden;
   padding-left: 20px;
@@ -202,6 +203,9 @@ input[type='radio'] {
 .movie-list {
   display: flex;
   transition: 1s ease-in-out;
+}
+.movie-list-item {
+  margin-top: 10px;
 }
 .movie-list-item:not(:last-child) {
   margin-right: 25px;
@@ -240,4 +244,7 @@ input[type='radio'] {
 }
 .hide {
   display: none;
+}
+.wrap {
+  flex-wrap: wrap;
 }
