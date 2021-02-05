@@ -176,6 +176,7 @@ input[type='radio'] {
 }
 .movie-wrapper {
   background-color: #f2f2f2;
+  padding: 0px 5px;
 }
 .m-heading {
   margin: 0px 17%;
@@ -192,12 +193,18 @@ input[type='radio'] {
 .small-chev {
   font-size: 0.5em;
 }
+.movie-list-wrapper {
+  margin: 10px 16%;
+  position: relative;
+  overflow: hidden;
+  padding-left: 20px;
+}
 .movie-list {
-  margin: 10px 17%;
   display: flex;
+  transition: 1s ease-in-out;
 }
 .movie-list-item:not(:last-child) {
-  margin-right: 30px;
+  margin-right: 25px;
 }
 .movie-list-item img {
   width: 230px;
@@ -211,4 +218,26 @@ input[type='radio'] {
   padding: 2px;
   font-size: 1em;
   color: #495252;
+}
+#mprevBtn,
+#mnextBtn {
+  background-color: #666;
+  color: #fff;
+  cursor: pointer;
+  position: absolute;
+  padding: 12px;
+  font-size: 1.1em;
+  border-radius: 50%;
+  height: 40px;
+  z-index: 2;
+  top: 170px;
+}
+#mprevBtn {
+  left: 0px;
+}
+#mnextBtn {
+  right: 0px;
+}
+.hide {
+  display: none;
 }

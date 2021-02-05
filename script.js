@@ -1,3 +1,4 @@
+// CAROUSAL
 const carousalSlide = document.querySelector('.carousal-slide');
 const carousalImages = document.querySelectorAll('.carousal-slide img');
 
@@ -58,4 +59,26 @@ document.getElementsByName('radio-btn').forEach(elem => {
     carousalSlide.style.transform = 'translateX(' + -size * counter + 'px)';
     repeat = setTimeout('changeSlide()', time);
   });
+});
+// ****
+// MOVIE LIST
+
+const mprevBtn = document.querySelector('#mprevBtn');
+const mnextBtn = document.querySelector('#mnextBtn');
+const movieList = document.querySelector('.movie-list');
+const movieListItems = document.querySelectorAll('.movie-list-item');
+const moviepanelsize = movieListItems[0].clientWidth;
+
+mprevBtn.addEventListener('click', () => {
+  console.log('prev');
+  movieList.style.transform = 'translateX(' + -moviepanelsize * 0 + 'px)';
+  mnextBtn.classList.toggle('hide');
+  mprevBtn.classList.toggle('hide');
+});
+
+mnextBtn.addEventListener('click', () => {
+  console.log('next');
+  movieList.style.transform = 'translateX(' + -moviepanelsize * 5.55 + 'px)';
+  mnextBtn.classList.toggle('hide');
+  mprevBtn.classList.toggle('hide');
 });
