@@ -2,8 +2,131 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
     <title>BookMyShow</title>
+    <link rel="stylesheet" href="https://static2.sharepointonline.com/files/fabric/office-ui-fabric-core/11.0.0/css/fabric.min.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="navbar-wrapper">
+      <div class="navbar">
+        <div class="nav-main">
+          <a href="./index.html"><img src="./media/logobms.png" alt="logo" class="logo" height="40px" /></a>
+          <input type="search" name="searchbar" id="searchbar" placeholder="Search for Movies, Events, Plays, Sports and Activities" />
+        </div>
+        <div class="nav-items">
+          <a href="#">Hyderabad <i class="ms-Icon ms-Icon--CaretSolidDown down"></i></a>
+          <a href="#" class="signin-btn">Sign in</a>
+          <a href="#" class="hamburger"><i class="ms-Icon ms-Icon--GlobalNavButton"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="banner-wrapper">
+      <div class="banner">
+        <div class="banner-left">
+          <a href="#">Movies</a>
+          <a href="#" class="new-item">Stream <span class="sup-new">NEW</span></a>
+          <a href="#">Events</a>
+          <a href="#">Plays</a>
+          <a href="#">Sports</a>
+          <a href="#">Activities</a>
+          <a href="#">Fanhood</a>
+          <a href="#">Buzz</a>
+        </div>
+        <div class="banner-right">
+          <a href="#" class="new-item">ListYourShow<span class="sup-new">NEW</span></a>
+          <a href="#">Corporates</a>
+          <a href="#">Offers</a>
+          <a href="#">Gift Cards</a>
+        </div>
+      </div>
+    </div>
+    <div class="carousal-wrapper">
+      <div class="carousal-container">
+        <i class="ms-Icon ms-Icon--ChevronLeftMed" id="prevBtn"></i>
+        <i class="ms-Icon ms-Icon--ChevronRightMed" id="nextBtn"></i>
+        <!-- Radio Buttons -->
+        <input type="radio" id="radio1" name="radio-btn" value="1" checked />
+        <input type="radio" id="radio2" name="radio-btn" value="2" />
+        <input type="radio" id="radio3" name="radio-btn" value="3" />
+        <input type="radio" id="radio4" name="radio-btn" value="4" />
+        <input type="radio" id="radio5" name="radio-btn" value="5" />
+        <!-- **** -->
+        <div class="manual-btn-list">
+          <label for="radio1" class="manual-btn bt1"></label>
+          <label for="radio2" class="manual-btn bt2"></label>
+          <label for="radio3" class="manual-btn bt3"></label>
+          <label for="radio4" class="manual-btn bt4"></label>
+          <label for="radio5" class="manual-btn bt5"></label>
+        </div>
+        <div class="carousal-slide">
+          <img src="./media/car5.webp" alt="" />
+          <img src="./media/car1.jpg" alt="" />
+          <img src="./media/car2.jpg" alt="" />
+          <img src="./media/car3.jpg" alt="" />
+          <img src="./media/car4.jpg" alt="" />
+          <img src="./media/car5.webp" alt="" />
+          <img src="./media/car1.jpg" alt="" />
+        </div>
+      </div>
+    </div>
+    <div class="movie-wrapper">
+      <div class="m-heading">
+        <h2 class="m-head">Recommended Movies</h2>
+        <a href="#" class="m-link">See all <span class="small-chev">></span></a>
+      </div>
+      <div class="movie-list">
+        <div class="movie-list-item">
+          <img src="./media/mov1.jpg" alt="" />
+          <h4>Tenet</h4>
+          <p>Action/Thriller</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov2.jpg" alt="" />
+          <h4>Monster Hunter</h4>
+          <p>Action/Adventure/Fantasy</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov3.jpg" alt="" />
+          <h4>Vijay The Master</h4>
+          <p>Action/Thriller</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov4.jpg" alt="" />
+          <h4>Wonder Woman 1984</h4>
+          <p>Action/Adventure/Fantasy</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov5.jpg" alt="" />
+          <h4>Ramprasad Ki Tehrvi</h4>
+          <p>Comedy/Drama/Family</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov6.jpg" alt="" />
+          <h4>Madam Chief Minister</h4>
+          <p>Drama/Political</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov7.jpg" alt="" />
+          <h4>Ford v Ferrari</h4>
+          <p>Action/Biography/Drama</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov8.jpg" alt="" />
+          <h4>Zombie Reddy</h4>
+          <p>Action/Comedy/Horror</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov9.jpg" alt="" />
+          <h4>Suraj Pe Mangal Bhari</h4>
+          <p>Comedy/Family</p>
+        </div>
+        <div class="movie-list-item">
+          <img src="./media/mov10.jpg" alt="" />
+          <h4>Trip</h4>
+          <p>Drama</p>
+        </div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
 </html>
