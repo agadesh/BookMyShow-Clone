@@ -389,6 +389,7 @@ input[type='radio'] {
 .main-area {
   background-color: #fff;
   margin: 0px 14%;
+  padding-bottom: 200px;
 }
 .info-banner {
   background-color: #f9ecc9;
@@ -411,14 +412,16 @@ input[type='radio'] {
 .info-banner-item p {
   font-size: 0.7em;
   padding: 0px 8px;
+  color: #666;
 }
-.m-ticket i {
+.info-banner-item i {
+  font-size: 1.1em;
+}
+.m-ticket {
   color: #4abd5d;
-  font-size: 1.1em;
 }
-.food i {
+.food {
   color: #ffb23f;
-  font-size: 1.1em;
 }
 #closeBanner {
   font-size: 0.8em;
@@ -447,10 +450,108 @@ input[type='radio'] {
   color: #4abd5d;
 }
 .ff i {
-  color: #ffb23f;
+  color: #ff6600;
 }
 .subl i {
   color: #4abd5d;
   padding: 0px 2px;
 }
-/* border-bottom: 1px solid #f2f2f2; */
+.theatre {
+  border-top: 1px solid #f2f2f2;
+  padding: 15px 20px;
+  display: flex;
+  align-items: flex-start;
+}
+.theatre > i {
+  color: #6666666c;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.theatre > i:hover {
+  color: #d43333;
+}
+.theatre-name-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 10px;
+  width: 220px;
+}
+.theatre-name-div > p {
+  font-size: 0.8em;
+  font-weight: bold;
+  cursor: pointer;
+}
+.theatre-name-div > p:hover {
+  text-decoration: underline;
+}
+.theatre-icon-item p {
+  font-size: 0.75em;
+  font-weight: 600;
+  margin: 0px 5px;
+}
+.theatre-icon-item {
+  display: flex;
+  align-items: center;
+  margin: 15px 0px;
+}
+.theatre-icons {
+  display: flex;
+}
+.theatre-icons > .m-ticket {
+  margin-right: 15px;
+}
+.thinfo-icon {
+  display: flex;
+  font-size: 0.7em;
+  color: #666;
+  cursor: pointer;
+  margin-right: 70px;
+  margin-top: 5px;
+}
+.thinfo-icon i {
+  color: #3bb1f2;
+  margin: 0px 4px;
+}
+.theatre-timings-div {
+  font-size: 1.1em;
+}
+.theatre-timings-list {
+  display: flex;
+  margin: 20px 0px;
+}
+.theatre-timings-div > .thinfo-icon {
+  margin-top: 0px;
+  cursor: default;
+}
+.theatre-timing {
+  font-size: 0.7em;
+  color: #4abd5d;
+  font-weight: bold;
+  padding: 12px 20px;
+  margin-right: 15px;
+  border-radius: 5px;
+  border: 1px solid #999;
+  cursor: pointer;
+}
+.theatre-timing:hover {
+  color: #fff;
+  background-color: #4abd5d;
+  border-color: #fff;
+}
+.alert-red {
+  color: #fc5d5d;
+}
+.cancel i {
+  color: #ffc610;
+}
+.cancel p {
+  color: #666;
+}
+.cancel {
+  margin-top: -10px;
+}
+.footer {
+  height: 30px;
+  background-color: #222539;
+}
