@@ -382,3 +382,75 @@ input[type='radio'] {
 .di-active:hover {
   color: #fff;
 }
+.main-area-wrapper {
+  background-color: #f2f2f2;
+  padding: 15px 0px;
+}
+.main-area {
+  background-color: #fff;
+  margin: 0px 14%;
+}
+.info-banner {
+  background-color: #f9ecc9;
+  padding: 10px 30px;
+  color: #666;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info-banner-item-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 38%;
+}
+.info-banner-item {
+  display: flex;
+  align-items: center;
+}
+.info-banner-item p {
+  font-size: 0.7em;
+  padding: 0px 8px;
+}
+.m-ticket i {
+  color: #4abd5d;
+  font-size: 1.1em;
+}
+.food i {
+  color: #ffb23f;
+  font-size: 1.1em;
+}
+#closeBanner {
+  font-size: 0.8em;
+}
+#closeBanner:hover {
+  color: #000;
+}
+.icon-info-banner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 5px 20px;
+  color: #666;
+}
+.icon-info {
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
+  margin-left: 10px;
+}
+.icon-info p {
+  font-size: 0.5em;
+  padding: 0px 4px;
+}
+.av i {
+  color: #4abd5d;
+}
+.ff i {
+  color: #ffb23f;
+}
+.subl i {
+  color: #4abd5d;
+  padding: 0px 2px;
+}
+/* border-bottom: 1px solid #f2f2f2; */

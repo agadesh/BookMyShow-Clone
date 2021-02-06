@@ -26,3 +26,9 @@ document.getElementsByName('dradio-btn').forEach((elem, i) => {
     }
   });
 });
+const infoBanner = document.querySelector('.info-banner');
+const closeBanner = document.querySelector('#closeBanner');
+
+closeBanner.addEventListener('click', () => {
+  infoBanner.style.display = 'none';
+});
