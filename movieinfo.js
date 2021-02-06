@@ -18,7 +18,7 @@ document.getElementsByName('dradio-btn').forEach((elem, i) => {
   elem.addEventListener('change', function (event) {
     pos = event.target.value - 1;
     dateList.style.transform = 'translateX(' + -47 * pos + 'px)';
-    date[i].classList.toggle('di-active');
+    date[i].classList.add('di-active');
     for (let a = 0; a < 8; a++) {
       if (a != i) {
         date[a].classList.remove('di-active');
