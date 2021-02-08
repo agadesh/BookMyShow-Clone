@@ -85,8 +85,8 @@ const movieInfoList = [
     name: 'Trip',
     release: 'Feb 05, 2021',
     duration: '2hrs 01mins',
-    percentage: 0,
-    votes: 0,
+    percentage: 67,
+    votes: 467,
     tags: ['comedy', 'horror'],
   },
 ];

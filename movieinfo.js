@@ -32,7 +32,24 @@ const closeBanner = document.querySelector('#closeBanner');
 closeBanner.addEventListener('click', () => {
   infoBanner.style.display = 'none';
 });
-var movieIndex = window.location.search.substring(1);
-console.log(movieIndex);
 
-const movieName = document.querySelector('#dateprevBtn');
+// **************************************
+
+var movieIndex = location.search.substring(7);
+const movieName = document.querySelector('.movie-name');
+const moviepercentage = document.querySelector('.percentage');
+const movievotes = document.querySelector('.votes');
+const movietags = document.querySelector('.tags');
+const movieduration = document.querySelector('.duration span');
+const movierelease = document.querySelector('.release-date');
+const movierating = document.querySelector('.rating');
+
+let thisMovie = movieInfoList[movieIndex];
+movieName.innerHTML = thisMovie.name;
+moviepercentage.innerHTML = thisMovie.percentage + ' %';
+movievotes.innerHTML = thisMovie.votes + ' VOTES';
+movierelease.innerHTML = thisMovie.release;
+movieduration.innerHTML = thisMovie.duration;
+thisMovie.tags.forEach(tag => {
+  movietags.innerHTML += `<div class="keyword">${tag}</div>`;
+});
