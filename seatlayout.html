@@ -9,6 +9,48 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <!-- **************************************** -->
+    <!-- The Modal -->
+    <div class="seat-modal">
+      <!-- Modal content -->
+      <div class="seat-modal-content">
+        <p>How Many Seats?</p>
+        <div class="seat-image">
+          <img src="./media/seatno/seat2.png" alt="image" />
+        </div>
+        <div class="seat-no-list">
+          <!-- Radio Buttons -->
+          <input type="radio" id="sradio1" name="sradio-btn" value="1" />
+          <input type="radio" id="sradio2" name="sradio-btn" value="2" checked />
+          <input type="radio" id="sradio3" name="sradio-btn" value="3" />
+          <input type="radio" id="sradio4" name="sradio-btn" value="4" />
+          <input type="radio" id="sradio5" name="sradio-btn" value="5" />
+          <input type="radio" id="sradio6" name="sradio-btn" value="6" />
+          <input type="radio" id="sradio7" name="sradio-btn" value="7" />
+          <input type="radio" id="sradio8" name="sradio-btn" value="8" />
+          <input type="radio" id="sradio9" name="sradio-btn" value="9" />
+          <input type="radio" id="sradio10" name="sradio-btn" value="10" />
+          <!-- **** -->
+          <label for="sradio1" class="seat-no-list-item">1</label>
+          <label for="sradio2" class="seat-no-list-item sn-active">2</label>
+          <label for="sradio3" class="seat-no-list-item">3</label>
+          <label for="sradio4" class="seat-no-list-item">4</label>
+          <label for="sradio5" class="seat-no-list-item">5</label>
+          <label for="sradio6" class="seat-no-list-item">6</label>
+          <label for="sradio7" class="seat-no-list-item">7</label>
+          <label for="sradio8" class="seat-no-list-item">8</label>
+          <label for="sradio9" class="seat-no-list-item">9</label>
+          <label for="sradio10" class="seat-no-list-item">10</label>
+        </div>
+        <div class="seat-price-details">
+          <p class="seat-class">PRIME</p>
+          <p class="seat-cost">Rs. 140.00</p>
+          <p class="seat-avail">Available</p>
+        </div>
+        <a href="#" class="select-seat-btn">Select Seats</a>
+      </div>
+    </div>
+    <!-- ***************************************** -->
     <div class="ticket-details"></div>
     <div class="ticket-timings"></div>
     <div class="main-area-wrapper">
@@ -17,5 +59,6 @@
         <a href="./index.html">Home</a>
       </div>
     </div>
+    <script src="./seatlayout.js"></script>
   </body>
 </html>
