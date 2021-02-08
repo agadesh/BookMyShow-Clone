@@ -601,6 +601,9 @@ input[type='radio'] {
 }
 .seat-image {
   height: 150px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 .seat-no-list {
   display: flex;

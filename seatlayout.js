@@ -4,12 +4,12 @@ var vehicleImage = document.querySelector('.seat-image img');
 
 window.onload = modal.style.display = 'block';
 window.onload = sessionStorage.setItem('seats', 2);
-// When the user clicks anywhere outside of the modal, close it
-// window.onclick = function (event) {
-//   if (event.target == modal) {
-//     modal.style.display = 'none';
-//   }
-// };
+
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.display = 'none';
+  }
+};
 
 document.getElementsByName('sradio-btn').forEach((elem, i) => {
   elem.addEventListener('change', function (event) {
