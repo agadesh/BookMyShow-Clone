@@ -36,7 +36,7 @@ closeBanner.addEventListener('click', () => {
 // **************************************
 
 var movieIndex = location.search.substring(7);
-const movieName = document.querySelector('.movie-name');
+const movieName = document.querySelector('.movie-name span');
 const moviepercentage = document.querySelector('.percentage');
 const movievotes = document.querySelector('.votes');
 const movietags = document.querySelector('.tags');

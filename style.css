@@ -262,6 +262,9 @@ input[type='radio'] {
   font-size: 2.25em;
   padding: 12px 0px 8px 0px;
 }
+.movie-name span:hover {
+  text-decoration: underline;
+}
 .ua-cert {
   color: #e1e2e2;
   font-family: 'Big Shoulders Display', cursive;
