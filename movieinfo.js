@@ -32,3 +32,7 @@ const closeBanner = document.querySelector('#closeBanner');
 closeBanner.addEventListener('click', () => {
   infoBanner.style.display = 'none';
 });
+var movieIndex = window.location.search.substring(1);
+console.log(movieIndex);
+
+const movieName = document.querySelector('#dateprevBtn');

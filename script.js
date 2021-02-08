@@ -95,3 +95,8 @@ viewAll.addEventListener('click', () => {
   }
   movieList.classList.toggle('wrap');
 });
+movieListItems.forEach((movie, i) => {
+  movie.addEventListener('click', function (event) {
+    window.open('./movieinfo.html?movie=' + i, '_self');
+  });
+});
