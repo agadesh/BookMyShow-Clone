@@ -304,6 +304,9 @@ input[type='radio'] {
 .tags {
   display: flex;
 }
+.day {
+  text-transform: uppercase;
+}
 .keyword {
   padding: 2px 8px;
   color: #abb4b4;

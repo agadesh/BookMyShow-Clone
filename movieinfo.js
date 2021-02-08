@@ -53,3 +53,26 @@ movieduration.innerHTML = thisMovie.duration;
 thisMovie.tags.forEach(tag => {
   movietags.innerHTML += `<div class="keyword">${tag}</div>`;
 });
+
+// *************DATE ARRAY
+
+var currentDate = new Date();
+let dateArray = [0, 1, 2, 3, 4, 5, 6, 7];
+let dayArray = [0, 1, 2, 3, 4, 5, 6, 7];
+
+dateArray.forEach((date, i) => {
+  dateArray[i] = String(new Date(currentDate.getTime() + 86400000 * i));
+  dayArray[i] = dateArray[i].substring(0, 3);
+  dateArray[i] = dateArray[i].substring(8, 10);
+});
+dayArray[0] = 'Today';
+
+const dates = document.querySelectorAll('.date-selector .date');
+const days = document.querySelectorAll('.date-selector .day');
+
+dates.forEach((date, i) => {
+  date.innerHTML = dateArray[i];
+});
+days.forEach((day, i) => {
+  day.innerHTML = dayArray[i];
+});
