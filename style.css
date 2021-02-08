@@ -531,7 +531,9 @@ input[type='radio'] {
   margin-top: 0px;
   cursor: default;
 }
-.theatre-timing {
+.theatre1-timing,
+.theatre2-timing,
+.theatre3-timing {
   font-size: 0.7em;
   color: #4abd5d;
   font-weight: bold;
@@ -541,7 +543,9 @@ input[type='radio'] {
   border: 1px solid #999;
   cursor: pointer;
 }
-.theatre-timing:hover {
+.theatre1-timing:hover,
+.theatre2-timing:hover,
+.theatre3-timing:hover {
   color: #fff;
   background-color: #4abd5d;
   border-color: #fff;

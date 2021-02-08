@@ -90,3 +90,4 @@ const movieInfoList = [
     tags: ['comedy', 'horror'],
   },
 ];
+const movieTheatres = ['Cinematic: Hyderabad', 'Lime Cinema: GC Road, Hyderabad', 'GCR Wide: Adel Avenue, Hyderabad'];

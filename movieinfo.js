@@ -19,6 +19,7 @@ document.getElementsByName('dradio-btn').forEach((elem, i) => {
     pos = event.target.value - 1;
     dateList.style.transform = 'translateX(' + -47 * pos + 'px)';
     date[i].classList.add('di-active');
+    sessionStorage.setItem('movieDate', String(new Date(currentDate.getTime() + 86400000 * pos)).substring(0, 15));
     for (let a = 0; a < 8; a++) {
       if (a != i) {
         date[a].classList.remove('di-active');
@@ -53,10 +54,12 @@ movieduration.innerHTML = thisMovie.duration;
 thisMovie.tags.forEach(tag => {
   movietags.innerHTML += `<div class="keyword">${tag}</div>`;
 });
+sessionStorage.setItem('movieName', movieName.innerHTML);
 
 // *************DATE ARRAY
 
 var currentDate = new Date();
+sessionStorage.setItem('movieDate', String(currentDate).substring(0, 15));
 let dateArray = [0, 1, 2, 3, 4, 5, 6, 7];
 let dayArray = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -75,4 +78,32 @@ dates.forEach((date, i) => {
 });
 days.forEach((day, i) => {
   day.innerHTML = dayArray[i];
+});
+
+const theatre1Timings = document.querySelectorAll('.theatre1-timing');
+
+theatre1Timings.forEach(timing => {
+  timing.addEventListener('click', () => {
+    window.open('./seatlayout.html', '_self');
+    sessionStorage.setItem('movieTheatre', movieTheatres[0]);
+    sessionStorage.setItem('movieTime', timing.innerHTML);
+  });
+});
+const theatre2Timings = document.querySelectorAll('.theatre2-timing');
+
+theatre2Timings.forEach(timing => {
+  timing.addEventListener('click', () => {
+    window.open('./seatlayout.html', '_self');
+    sessionStorage.setItem('movieTheatre', movieTheatres[1]);
+    sessionStorage.setItem('movieTime', timing.innerHTML);
+  });
+});
+const theatre3Timings = document.querySelectorAll('.theatre3-timing');
+
+theatre3Timings.forEach(timing => {
+  timing.addEventListener('click', () => {
+    window.open('./seatlayout.html', '_self');
+    sessionStorage.setItem('movieTheatre', movieTheatres[2]);
+    sessionStorage.setItem('movieTime', timing.innerHTML);
+  });
 });
