@@ -36,7 +36,7 @@ closeBanner.addEventListener('click', () => {
 
 // **************************************
 
-var movieIndex = location.search.substring(7);
+const movieId = location.search.substring(9);
 const movieName = document.querySelector('.movie-name span');
 const moviepercentage = document.querySelector('.percentage');
 const movievotes = document.querySelector('.votes');
@@ -45,7 +45,10 @@ const movieduration = document.querySelector('.duration span');
 const movierelease = document.querySelector('.release-date');
 const movierating = document.querySelector('.rating');
 
-let thisMovie = movieTable[movieIndex];
+const thisMovie = movieTable.find(function (movie) {
+  return movie.id == movieId;
+});
+
 movieName.innerHTML = thisMovie.name;
 moviepercentage.innerHTML = thisMovie.likes + ' %';
 movievotes.innerHTML = thisMovie.votes + ' VOTES';

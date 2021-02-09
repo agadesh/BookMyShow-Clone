@@ -119,6 +119,6 @@ viewAll.addEventListener('click', () => {
 });
 movieListItems.forEach((movie, i) => {
   movie.addEventListener('click', () => {
-    window.open('./movieinfo.html?movie=' + i, '_self');
+    window.open('./movieinfo.html?movieid=' + movieTable[i].id, '_self');
   });
 });
