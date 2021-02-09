@@ -45,7 +45,7 @@ const movieduration = document.querySelector('.duration span');
 const movierelease = document.querySelector('.release-date');
 const movierating = document.querySelector('.rating');
 
-let thisMovie = movieInfoList[movieIndex];
+let thisMovie = movieTable[movieIndex];
 movieName.innerHTML = thisMovie.name;
 moviepercentage.innerHTML = thisMovie.percentage + ' %';
 movievotes.innerHTML = thisMovie.votes + ' VOTES';
