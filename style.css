@@ -264,6 +264,7 @@ input[type='radio'] {
 }
 .movie-name span:hover {
   text-decoration: underline;
+  cursor: pointer;
 }
 .ua-cert {
   color: #e1e2e2;

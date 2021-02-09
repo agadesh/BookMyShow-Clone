@@ -1,3 +1,20 @@
+const movieList = document.querySelector('.movie-list');
+
+movieTable.forEach(movie => {
+  let tagList = '';
+  movie.tags.forEach(tag => {
+    tagList += tag + '/';
+  });
+  tagList = tagList.slice(0, -1);
+  movieList.innerHTML += ` <div class="movie-list-item">
+                          <img src=${movie.movImgURL} alt="movie-poster" />
+                          <h4>${movie.name}</h4>
+                          <p>${tagList}</p>
+                        </div>`;
+});
+
+// ********************************************
+
 // CAROUSAL
 const carousalSlide = document.querySelector('.carousal-slide');
 const carousalImages = document.querySelectorAll('.carousal-slide img');
@@ -65,22 +82,27 @@ document.getElementsByName('radio-btn').forEach(elem => {
 
 const mprevBtn = document.querySelector('#mprevBtn');
 const mnextBtn = document.querySelector('#mnextBtn');
-const movieList = document.querySelector('.movie-list');
 const movieListItems = document.querySelectorAll('.movie-list-item');
 const moviepanelsize = movieListItems[0].clientWidth;
+let movieListPos = 0;
 let shiftFlag = false;
+
 mprevBtn.addEventListener('click', () => {
-  console.log('prev');
-  movieList.style.transform = 'translateX(' + -moviepanelsize * 0 + 'px)';
-  mnextBtn.classList.remove('hide');
-  mprevBtn.classList.add('hide');
+  movieListPos--;
+  movieList.style.transform = 'translateX(' + -moviepanelsize * 5.55 * movieListPos + 'px)';
+  if (movieListPos == 0) {
+    mnextBtn.classList.remove('hide');
+    mprevBtn.classList.add('hide');
+  }
 });
 
 mnextBtn.addEventListener('click', () => {
-  console.log('next');
-  movieList.style.transform = 'translateX(' + -moviepanelsize * 5.55 + 'px)';
-  mnextBtn.classList.add('hide');
-  mprevBtn.classList.remove('hide');
+  movieListPos++;
+  movieList.style.transform = 'translateX(' + -moviepanelsize * 5.55 * movieListPos + 'px)';
+  if ((movieListPos + 1) * 5 >= movieListItems.length) {
+    mnextBtn.classList.add('hide');
+    mprevBtn.classList.remove('hide');
+  }
 });
 const viewAll = document.querySelector('#viewAll');
 viewAll.addEventListener('click', () => {
