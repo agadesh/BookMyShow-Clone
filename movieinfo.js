@@ -1,3 +1,37 @@
+const infoBanner = document.querySelector('.info-banner');
+const closeBanner = document.querySelector('#closeBanner');
+
+closeBanner.addEventListener('click', () => {
+  infoBanner.style.display = 'none';
+});
+
+// **************************************MOVIE DATA
+
+const movieId = location.search.substring(9);
+const movieName = document.querySelector('.movie-name span');
+const moviepercentage = document.querySelector('.percentage');
+const movievotes = document.querySelector('.votes');
+const movietags = document.querySelector('.tags');
+const movieduration = document.querySelector('.duration span');
+const movierelease = document.querySelector('.release-date');
+const movierating = document.querySelector('.rating');
+
+const thisMovie = movieTable.find(function (movie) {
+  return movie.id == movieId;
+});
+
+movieName.innerHTML = thisMovie.name;
+moviepercentage.innerHTML = thisMovie.likes + ' %';
+movievotes.innerHTML = thisMovie.votes + ' VOTES';
+movierelease.innerHTML = thisMovie.release;
+movieduration.innerHTML = thisMovie.duration;
+thisMovie.tags.forEach(tag => {
+  movietags.innerHTML += `<div class="keyword">${tag}</div>`;
+});
+sessionStorage.setItem('movieName', movieName.innerHTML);
+
+// ************************DATE SLIDER
+
 const dateprevBtn = document.querySelector('#dateprevBtn');
 const datenextBtn = document.querySelector('#datenextBtn');
 const dateList = document.querySelector('.date-selector');
@@ -27,37 +61,6 @@ document.getElementsByName('dradio-btn').forEach((elem, i) => {
     }
   });
 });
-const infoBanner = document.querySelector('.info-banner');
-const closeBanner = document.querySelector('#closeBanner');
-
-closeBanner.addEventListener('click', () => {
-  infoBanner.style.display = 'none';
-});
-
-// **************************************
-
-const movieId = location.search.substring(9);
-const movieName = document.querySelector('.movie-name span');
-const moviepercentage = document.querySelector('.percentage');
-const movievotes = document.querySelector('.votes');
-const movietags = document.querySelector('.tags');
-const movieduration = document.querySelector('.duration span');
-const movierelease = document.querySelector('.release-date');
-const movierating = document.querySelector('.rating');
-
-const thisMovie = movieTable.find(function (movie) {
-  return movie.id == movieId;
-});
-
-movieName.innerHTML = thisMovie.name;
-moviepercentage.innerHTML = thisMovie.likes + ' %';
-movievotes.innerHTML = thisMovie.votes + ' VOTES';
-movierelease.innerHTML = thisMovie.release;
-movieduration.innerHTML = thisMovie.duration;
-thisMovie.tags.forEach(tag => {
-  movietags.innerHTML += `<div class="keyword">${tag}</div>`;
-});
-sessionStorage.setItem('movieName', movieName.innerHTML);
 
 // *************DATE ARRAY
 
@@ -82,6 +85,8 @@ dates.forEach((date, i) => {
 days.forEach((day, i) => {
   day.innerHTML = dayArray[i];
 });
+
+// ***************************THEATRE SELECT
 
 const theatre1Timings = document.querySelectorAll('.theatre1-timing');
 

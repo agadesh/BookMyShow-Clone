@@ -100,4 +100,114 @@ const movieTable = [
     movImgURL: './media/movies/mov10.jpg',
   },
 ];
+
+const theatreTable = [
+  {
+    id: 0,
+    name: 'Cinematic',
+    address: 'Hyderabad',
+  },
+  {
+    id: 1,
+    name: 'Lime Cinema',
+    address: 'GC Road, Hyderabad',
+  },
+];
+const theatreScreenTable = [
+  {
+    id: 0,
+    screenno: 1,
+    theatreid: 0,
+  },
+  {
+    id: 1,
+    screenno: 2,
+    theatreid: 0,
+  },
+  {
+    id: 2,
+    screenno: 1,
+    theatreid: 1,
+  },
+  {
+    id: 3,
+    screenno: 2,
+    theatreid: 1,
+  },
+];
+const screeningTable = [
+  {
+    id: 0,
+    movieid: 0,
+    theatreid: 0,
+    screenid: 0,
+    date: '9 Feb',
+    timing: '3PM',
+    seatprice: 100,
+  },
+  {
+    id: 1,
+    movieid: 0,
+    theatreid: 0,
+    screenid: 0,
+    date: '10 Feb',
+    timing: '3PM',
+    seatprice: 100,
+  },
+  {
+    id: 2,
+    movieid: 0,
+    theatreid: 1,
+    screenid: 2,
+    date: '9 Feb',
+    timing: '7PM',
+    seatprice: 150,
+  },
+  {
+    id: 3,
+    movieid: 0,
+    theatreid: 1,
+    screenid: 2,
+    date: '10 Feb',
+    timing: '11AM',
+    seatprice: 120,
+  },
+  {
+    id: 4,
+    movieid: 1,
+    theatreid: 0,
+    screenid: 1,
+    date: '10 Feb',
+    timing: '11AM',
+    seatprice: 100,
+  },
+  {
+    id: 5,
+    movieid: 1,
+    theatreid: 0,
+    screenid: 1,
+    date: '12 Feb',
+    timing: '7PM',
+    seatprice: 150,
+  },
+  {
+    id: 6,
+    movieid: 1,
+    theatreid: 1,
+    screenid: 3,
+    date: '10 Feb',
+    timing: '9PM',
+    seatprice: 150,
+  },
+  {
+    id: 7,
+    movieid: 1,
+    theatreid: 1,
+    screenid: 3,
+    date: '12 Feb',
+    timing: '4PM',
+    seatprice: 120,
+  },
+];
+
 const movieTheatres = ['Cinematic: Hyderabad', 'Lime Cinema: GC Road, Hyderabad', 'GCR Wide: Adel Avenue, Hyderabad'];
