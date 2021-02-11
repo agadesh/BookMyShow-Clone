@@ -3,7 +3,7 @@
 const movieList = document.querySelector('.movie-list');
 
 (function renderMovieList() {
-  movieTable.forEach(movie => {
+  dataServer.getMovies().forEach(movie => {
     let tagList = '';
     movie.tags.forEach(tag => {
       tagList += tag + '/';

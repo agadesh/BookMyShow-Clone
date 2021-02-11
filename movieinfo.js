@@ -1,15 +1,20 @@
-const infoBanner = document.querySelector('.info-banner');
-const closeBanner = document.querySelector('#closeBanner');
+// ************************************** INFO BANNER CLOSE BUTTON
 
-closeBanner.addEventListener('click', () => {
-  infoBanner.style.display = 'none';
-});
+(function readInfoBannerCloseBtn() {
+  const infoBanner = document.querySelector('.info-banner');
+  const closeBannerBtn = document.querySelector('#closeBanner');
+  closeBannerBtn.addEventListener('click', () => {
+    infoBanner.style.display = 'none';
+  });
+})();
 
 // **************************************MOVIE DATA
 
 const movieId = location.search.substring(9);
+function renderMovieDetails() {}
+
 const movieName = document.querySelector('.movie-name span');
-const moviepercentage = document.querySelector('.percentage');
+const movieLikes = document.querySelector('.likes');
 const movievotes = document.querySelector('.votes');
 const movietags = document.querySelector('.tags');
 const movieduration = document.querySelector('.duration span');
@@ -21,7 +26,7 @@ const thisMovie = movieTable.find(function (movie) {
 });
 
 movieName.innerHTML = thisMovie.name;
-moviepercentage.innerHTML = thisMovie.likes + ' %';
+movieLikes.innerHTML = thisMovie.likes + ' %';
 movievotes.innerHTML = thisMovie.votes + ' VOTES';
 movierelease.innerHTML = thisMovie.release;
 movieduration.innerHTML = thisMovie.duration;
