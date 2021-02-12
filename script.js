@@ -3,20 +3,6 @@
 const movieList = document.querySelector('.movie-list');
 
 dataProvider.renderMovieList(movieList);
-// (function renderMovieList() {
-//   dataServer.getMovies().forEach(movie => {
-//     let tagList = '';
-//     movie.tags.forEach(tag => {
-//       tagList += tag + '/';
-//     });
-//     tagList = tagList.slice(0, -1); //removing last '/'
-//     movieList.innerHTML += `<div class="movie-list-item">
-//     <img src=${movie.movImgURL} alt="movie-poster" />
-//     <h4>${movie.name}</h4>
-//     <p>${tagList}</p>
-//     </div>`;
-//   });
-// })();
 
 // ************************************ PASSING MOVIE ID IN URL
 
@@ -25,7 +11,7 @@ const movieListItems = document.querySelectorAll('.movie-list-item');
 (function openMovieInfoPage() {
   movieListItems.forEach((movie, i) => {
     movie.addEventListener('click', () => {
-      window.open('./movieinfo.html?movieid=' + movieTable[i].id, '_self');
+      window.open('./movieinfo.html?movieid=' + dataServer.getMovies()[i].id, '_self');
     });
   });
 })();
@@ -40,7 +26,7 @@ function slideCarousal(carousalSlidePostion) {
 }
 
 let carousalSlideCounter = 0;
-const time = 5000;
+const time = 3000;
 let repeat;
 
 (function CarousalSlideSelector() {

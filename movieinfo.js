@@ -11,29 +11,7 @@
 // **************************************MOVIE DATA
 
 const movieId = location.search.substring(9);
-function renderMovieDetails() {}
-
-const movieName = document.querySelector('.movie-name span');
-const movieLikes = document.querySelector('.likes');
-const movievotes = document.querySelector('.votes');
-const movietags = document.querySelector('.tags');
-const movieduration = document.querySelector('.duration span');
-const movierelease = document.querySelector('.release-date');
-const movierating = document.querySelector('.rating');
-
-const thisMovie = movieTable.find(function (movie) {
-  return movie.id == movieId;
-});
-
-movieName.innerHTML = thisMovie.name;
-movieLikes.innerHTML = thisMovie.likes + ' %';
-movievotes.innerHTML = thisMovie.votes + ' VOTES';
-movierelease.innerHTML = thisMovie.release;
-movieduration.innerHTML = thisMovie.duration;
-thisMovie.tags.forEach(tag => {
-  movietags.innerHTML += `<div class="keyword">${tag}</div>`;
-});
-sessionStorage.setItem('movieName', movieName.innerHTML);
+dataProvider.renderMovieDetails(movieId);
 
 // ************************DATE SLIDER
 
