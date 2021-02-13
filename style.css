@@ -540,9 +540,7 @@ input[type='radio'] {
   margin-top: 0px;
   cursor: default;
 }
-.theatre1-timing,
-.theatre2-timing,
-.theatre3-timing {
+.theatre-timing {
   font-size: 0.7em;
   color: #4abd5d;
   font-weight: bold;
@@ -552,9 +550,7 @@ input[type='radio'] {
   border: 1px solid #999;
   cursor: pointer;
 }
-.theatre1-timing:hover,
-.theatre2-timing:hover,
-.theatre3-timing:hover {
+.theatre-timing:hover {
   color: #fff;
   background-color: #4abd5d;
   border-color: #fff;
@@ -663,4 +659,11 @@ input[type='radio'] {
   color: #fff;
   padding: 11px 180px;
   border-radius: 10px;
+}
+.theatre-list {
+  min-height: 32vh;
+}
+.no-shows {
+  text-align: center;
+  padding: 50px;
 }

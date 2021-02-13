@@ -135,15 +135,25 @@ const dataServer = (function () {
       theatreid: 1,
     },
   ];
-
+  const dateToday = new Date();
+  // String(new Date(dateToday.getTime() + 86400000 * {no-of-days-later})).substring(4,10);
   const screeningTable = [
     {
       id: 0,
       movieid: 0,
       theatreid: 0,
       screenid: 0,
-      date: '9 Feb',
-      timing: '3PM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 0)).substring(4, 10),
+      timing: '3:00 PM',
+      seatprice: 100,
+    },
+    {
+      id: 8,
+      movieid: 0,
+      theatreid: 0,
+      screenid: 0,
+      date: String(new Date(dateToday.getTime() + 86400000 * 0)).substring(4, 10),
+      timing: '9:00 PM',
       seatprice: 100,
     },
     {
@@ -151,8 +161,8 @@ const dataServer = (function () {
       movieid: 0,
       theatreid: 0,
       screenid: 0,
-      date: '10 Feb',
-      timing: '3PM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 1)).substring(4, 10),
+      timing: '3:00 PM',
       seatprice: 100,
     },
     {
@@ -160,8 +170,8 @@ const dataServer = (function () {
       movieid: 0,
       theatreid: 1,
       screenid: 2,
-      date: '9 Feb',
-      timing: '7PM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 0)).substring(4, 10),
+      timing: '7:00 PM',
       seatprice: 150,
     },
     {
@@ -169,8 +179,8 @@ const dataServer = (function () {
       movieid: 0,
       theatreid: 1,
       screenid: 2,
-      date: '10 Feb',
-      timing: '11AM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 1)).substring(4, 10),
+      timing: '11:00 AM',
       seatprice: 120,
     },
     {
@@ -178,8 +188,8 @@ const dataServer = (function () {
       movieid: 1,
       theatreid: 0,
       screenid: 1,
-      date: '10 Feb',
-      timing: '11AM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 1)).substring(4, 10),
+      timing: '11:00 AM',
       seatprice: 100,
     },
     {
@@ -187,8 +197,8 @@ const dataServer = (function () {
       movieid: 1,
       theatreid: 0,
       screenid: 1,
-      date: '12 Feb',
-      timing: '7PM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 3)).substring(4, 10),
+      timing: '7:00 PM',
       seatprice: 150,
     },
     {
@@ -196,8 +206,8 @@ const dataServer = (function () {
       movieid: 1,
       theatreid: 1,
       screenid: 3,
-      date: '10 Feb',
-      timing: '9PM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 1)).substring(4, 10),
+      timing: '9:00 PM',
       seatprice: 150,
     },
     {
@@ -205,8 +215,8 @@ const dataServer = (function () {
       movieid: 1,
       theatreid: 1,
       screenid: 3,
-      date: '12 Feb',
-      timing: '4PM',
+      date: String(new Date(dateToday.getTime() + 86400000 * 3)).substring(4, 10),
+      timing: '4:00 PM',
       seatprice: 120,
     },
   ];

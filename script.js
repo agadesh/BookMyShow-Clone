@@ -4,17 +4,11 @@ const movieList = document.querySelector('.movie-list');
 
 dataProvider.renderMovieList(movieList);
 
-// ************************************ PASSING MOVIE ID IN URL
+// ************************************ OPENING MOVIE INFO PAGE
 
 const movieListItems = document.querySelectorAll('.movie-list-item');
 
-(function openMovieInfoPage() {
-  movieListItems.forEach((movie, i) => {
-    movie.addEventListener('click', () => {
-      window.open('./movieinfo.html?movieid=' + dataServer.getMovies()[i].id, '_self');
-    });
-  });
-})();
+dataService.openMovieInfoPage(movieListItems);
 
 // ************************************ CAROUSAL SLIDER
 
@@ -91,7 +85,7 @@ function autoChangeCarousalSlide() {
 //Initializing Auto Carousal Slider
 repeat = setTimeout('autoChangeCarousalSlide()', time);
 
-// ************************************ MOVIELIST SLIDER
+// ************************************ MOVIE LIST SLIDER
 
 const movieListItemWidth = movieListItems[0].clientWidth;
 
@@ -103,7 +97,7 @@ const viewAllBtn = document.querySelector('#viewAll');
 const movieListNextBtn = document.querySelector('#mnextBtn');
 const movieListPrevBtn = document.querySelector('#mprevBtn');
 
-(function checkMovieNo() {
+(function checkMoviePages() {
   if (movieListItems.length <= 5) {
     movieListNextBtn.classList.add('hide');
     viewAllBtn.classList.add('hide');

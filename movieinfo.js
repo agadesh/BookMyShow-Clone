@@ -1,51 +1,38 @@
 // ************************************** INFO BANNER CLOSE BUTTON
 
-(function readInfoBannerCloseBtn() {
-  const infoBanner = document.querySelector('.info-banner');
-  const closeBannerBtn = document.querySelector('#closeBanner');
-  closeBannerBtn.addEventListener('click', () => {
-    infoBanner.style.display = 'none';
-  });
-})();
+const infoBanner = document.querySelector('.info-banner');
+const closeBannerBtn = document.querySelector('#closeBanner');
+closeBannerBtn.addEventListener('click', () => {
+  infoBanner.style.display = 'none';
+});
 
-// **************************************MOVIE DATA
+// ************************************** RENDERING MOVIE DATA
 
 const movieId = location.search.substring(9);
 dataProvider.renderMovieDetails(movieId);
 
 // ************************DATE SLIDER
 
+let dateListPosition = 0;
+const dateList = document.querySelector('.date-selector');
 const dateprevBtn = document.querySelector('#dateprevBtn');
 const datenextBtn = document.querySelector('#datenextBtn');
-const dateList = document.querySelector('.date-selector');
-const date = document.querySelectorAll('.date-item');
-let pos = 0;
+
+function DateSlide(dateSlidePosition) {
+  dateList.style.transform = 'translateX(' + -47 * dateSlidePosition + 'px)';
+}
 datenextBtn.addEventListener('click', () => {
-  if (pos >= 7) return;
-  pos++;
-  dateList.style.transform = 'translateX(' + -47 * pos + 'px)';
+  if (dateListPosition >= 7) return;
+  dateListPosition++;
+  DateSlide(dateListPosition);
 });
 dateprevBtn.addEventListener('click', () => {
-  if (pos == 0) return;
-  pos--;
-  dateList.style.transform = 'translateX(' + -47 * pos + 'px)';
+  if (dateListPosition == 0) return;
+  dateListPosition--;
+  DateSlide(dateListPosition);
 });
 
-document.getElementsByName('dradio-btn').forEach((elem, i) => {
-  elem.addEventListener('change', function (event) {
-    pos = event.target.value - 1;
-    dateList.style.transform = 'translateX(' + -47 * pos + 'px)';
-    date[i].classList.add('di-active');
-    sessionStorage.setItem('movieDate', String(new Date(currentDate.getTime() + 86400000 * pos)).substring(0, 15));
-    for (let a = 0; a < 8; a++) {
-      if (a != i) {
-        date[a].classList.remove('di-active');
-      }
-    }
-  });
-});
-
-// *************DATE ARRAY
+// ************************ DISPLAY DATES FOR A WEEK
 
 var currentDate = new Date();
 sessionStorage.setItem('movieDate', String(currentDate).substring(0, 15));
@@ -69,32 +56,96 @@ days.forEach((day, i) => {
   day.innerHTML = dayArray[i];
 });
 
-// ***************************THEATRE SELECT
+// ********************************************************
 
-const theatre1Timings = document.querySelectorAll('.theatre1-timing');
+let showDate = String(new Date()).substring(4, 10);
+const theatreList = document.querySelector('.theatre-list');
 
-theatre1Timings.forEach(timing => {
-  timing.addEventListener('click', () => {
-    window.open('./seatlayout.html', '_self');
-    sessionStorage.setItem('movieTheatre', movieTheatres[0]);
-    sessionStorage.setItem('movieTime', timing.innerHTML);
+function showscreeningsformovie(showDate) {
+  let screeningsnow = dataServer.getScreenings().filter(function (screening) {
+    return screening.movieid == movieId && screening.date == showDate;
+  });
+  if (screeningsnow.length == 0) {
+    theatreList.innerHTML = '<div class="no-shows">No Shows on Date. Please select another date.</div>';
+    return;
+  }
+  console.log(screeningsnow, 'screenings'); // showing screenings for selected movie on particular date
+  let theatres = [];
+  screeningsnow.forEach(screening => {
+    theatres.push(screening.theatreid);
+  });
+  theatres = [...new Set(theatres)];
+  theatreList.innerHTML = '';
+  theatres.forEach(theatreid => {
+    const thisTheatre = dataServer.getTheatres().find(theatre => {
+      return theatre.id == theatreid;
+    });
+    let theatreTimingsList = '';
+    screeningsnow.forEach(screening => {
+      if (screening.theatreid == theatreid) {
+        theatreTimingsList += `<div class="theatre-timing" onclick="selectTimeslot(${screening.id})">${screening.timing}</div>`;
+      }
+    });
+
+    (function renderTheatre() {
+      theatreList.innerHTML += `<div class="theatre">
+      <i class="ms-Icon ms-Icon--HeartFill"></i>
+      <div class="theatre-name-div">
+      <p>${thisTheatre.name + ': ' + thisTheatre.address}</p>
+      <div class="theatre-icons">
+      <div class="theatre-icon-item m-ticket">
+      <i class="ms-Icon ms-Icon--CellPhone"></i>
+      <p>M-Ticket</p>
+      </div>
+      <div class="theatre-icon-item food">
+      <i class="ms-Icon ms-Icon--EatDrink"></i>
+      <p>F&B</p>
+      </div>
+      </div>
+      </div>
+        <div class="thinfo-icon">
+        <i class="ms-Icon ms-Icon--ShieldSolid"></i>
+        <p>INFO</p>
+        </div>
+        <div class="theatre-timings-div">
+        <div class="thinfo-icon">
+        <i class="ms-Icon ms-Icon--ShieldSolid"></i>
+        <p>My Safety First</p>
+        </div>
+        <div class="theatre-timings-list">${theatreTimingsList}
+        </div>
+        </div>
+        </div>`;
+    })();
+  });
+}
+showscreeningsformovie(showDate);
+// ******************************************************* DATE SELECTOR
+const dateItem = document.querySelectorAll('.date-item');
+
+document.getElementsByName('dradio-btn').forEach((elem, i) => {
+  elem.addEventListener('change', function (event) {
+    dateListPosition = event.target.value - 1;
+    DateSlide(dateListPosition);
+    dateItem[i].classList.add('di-active');
+    showDate = String(new Date(currentDate.getTime() + 86400000 * dateListPosition)).substring(4, 10);
+    console.log(showDate, 'date'); //Showing date
+    showscreeningsformovie(showDate);
+    sessionStorage.setItem('movieDate', showDate);
+    for (let a = 0; a < 8; a++) {
+      if (a != i) {
+        dateItem[a].classList.remove('di-active');
+      }
+    }
   });
 });
-const theatre2Timings = document.querySelectorAll('.theatre2-timing');
 
-theatre2Timings.forEach(timing => {
-  timing.addEventListener('click', () => {
-    window.open('./seatlayout.html', '_self');
-    sessionStorage.setItem('movieTheatre', movieTheatres[1]);
-    sessionStorage.setItem('movieTime', timing.innerHTML);
-  });
-});
-const theatre3Timings = document.querySelectorAll('.theatre3-timing');
-
-theatre3Timings.forEach(timing => {
-  timing.addEventListener('click', () => {
-    window.open('./seatlayout.html', '_self');
-    sessionStorage.setItem('movieTheatre', movieTheatres[2]);
-    sessionStorage.setItem('movieTime', timing.innerHTML);
-  });
-});
+function selectTimeslot(screeningid) {
+  // const currentScreening = dataServer.getScreenings().find(function (screening) {
+  //   return screening.id == screeningid;
+  // });
+  // sessionStorage.setItem('movieTheatreid', currentScreening.theatreid);
+  // sessionStorage.setItem('movieTime', currentScreening.timing);
+  // console.log(screeningid, currentScreening.theatreid, currentScreening.timing);
+  window.open(`./seatlayout.html?screeningid=${screeningid}`, '_self');
+}

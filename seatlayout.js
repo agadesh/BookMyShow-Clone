@@ -1,15 +1,15 @@
 var modal = document.querySelector('.seat-modal');
 var seatList = document.querySelectorAll('.seat-no-list-item');
 var vehicleImage = document.querySelector('.seat-image img');
+var selectSeats = document.querySelector('.select-seat-btn');
 
-window.onload = modal.style.display = 'block';
+window.onload = modal.style.display = 'block'; //display modal
 window.onload = sessionStorage.setItem('seats', 2);
 
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.display = 'none';
-  }
+selectSeats.onclick = function () {
+  modal.style.display = 'none';
 };
+// ****************************** NO OF SEATS SELECTOR
 
 document.getElementsByName('sradio-btn').forEach((elem, i) => {
   elem.addEventListener('change', function (event) {
@@ -22,6 +22,7 @@ document.getElementsByName('sradio-btn').forEach((elem, i) => {
     }
   });
 });
+//  ******************************** NO OF SEATS MODAL IMAGE ANIMATION
 
 seatList.forEach((seatno, i) => {
   seatno.addEventListener('mouseover', () => {
@@ -34,3 +35,13 @@ seatList.forEach(seatno => {
     vehicleImage.src = `./media/seatno/seat${noOfSeats}.png`;
   });
 });
+
+// ******************************************************
+
+const seatCostElement = document.querySelector('.seat-cost');
+
+let thisScreening = dataServer.getScreenings().find(screening => {
+  return (screening.id = location.search.substring(13));
+});
+
+seatCostElement.innerHTML = thisScreening.seatprice;
