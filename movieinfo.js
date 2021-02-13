@@ -45,6 +45,7 @@ dateArray.forEach((date, i) => {
   dateArray[i] = dateArray[i].substring(8, 10);
 });
 dayArray[0] = 'Today';
+dayArray[1] = 'TOM';
 
 const dates = document.querySelectorAll('.date-selector .date');
 const days = document.querySelectorAll('.date-selector .day');

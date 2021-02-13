@@ -667,3 +667,145 @@ input[type='radio'] {
   text-align: center;
   padding: 50px;
 }
+/* ************************************************ */
+
+.ticket-details {
+  background-color: #1f2533;
+  padding: 15px;
+  color: #f1ffdf;
+  display: flex;
+  font-size: 0.8em;
+  justify-content: space-between;
+  align-items: center;
+}
+.ticket-details-left,
+.ticket-details-right {
+  display: flex;
+  margin-right: 20px;
+}
+
+.ticket-show-details {
+  padding: 0px 10px;
+}
+.ticket-theatre-name {
+  margin-top: 8px;
+  color: #cdcecb;
+}
+.no-of-tickets {
+  font-size: 0.9em;
+  margin-right: 50px;
+}
+.no-of-tickets i {
+  padding: 4px;
+}
+.ticket-back {
+  font-size: 1.5em;
+}
+.ticket-close {
+  padding: 5px;
+  font-size: 0.8em;
+  color: #cdcecb;
+}
+.ticket-timings {
+  background-color: #e3e6e6;
+  color: #666;
+  font-size: 0.9em;
+  padding: 5px 50px;
+}
+.gray {
+  background-color: #f2f2f2;
+}
+.seat-grid-area {
+  background-color: #fafafa;
+  padding: 60px;
+  user-select: none;
+}
+.seat-grid {
+  width: 600px;
+  margin: auto;
+  padding-right: 70px;
+  display: flex;
+  flex-direction: column;
+}
+.seat-class-head {
+  width: 600px;
+  margin: auto;
+  font-size: 0.75em;
+  color: #999;
+  padding: 5px;
+  border-bottom: 1px solid #f2f2f2;
+}
+.seat-row {
+  margin: 10px;
+  display: flex;
+  /* justify-content: space-between; */
+}
+.seat-row-head {
+  color: #999;
+  margin-right: 150px;
+}
+.seat-column-list {
+  display: flex;
+}
+.seat-column {
+  width: 20px;
+  height: 20px;
+  font-size: 0.7em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0px 4px;
+  color: #1ea83c;
+  border: 1px solid #1ea83c;
+  border-radius: 2px;
+}
+.seat-spacer {
+  width: 60px;
+}
+.seat-column:hover,
+.seat-selected {
+  background-color: #1ea83c;
+  color: #fff;
+}
+.seat-disabled,
+.seat-disabled:hover {
+  background-color: rgb(221, 220, 220);
+  border: none;
+  color: #fff;
+}
+.theatre-screen {
+  font-size: 0.7em;
+  margin-top: 50px;
+  text-align: center;
+  padding-left: 80px;
+}
+.screen {
+  font-size: 0.7em;
+  margin: 10px auto;
+  padding: 1px;
+  border-radius: 4px;
+  width: 300px;
+  color: #6cabf3;
+  border: 1px solid #6cabf3;
+  background-color: #87b6ec70;
+}
+.seat-availibility {
+  color: #333;
+  width: 100%;
+  font-size: 0.8em;
+  position: fixed;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa;
+  padding: 5px;
+}
+.seat-availibility-item {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+.seat-availibility-item p {
+  margin: 0px 5px;
+}

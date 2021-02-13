@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body class="gray">
     <div class="seat-modal">
       <!-- Modal content -->
       <div class="seat-modal-content">
@@ -41,7 +41,7 @@
           <label for="sradio10" class="seat-no-list-item">10</label>
         </div>
         <div class="seat-price-details">
-          <p class="seat-class">PRIME</p>
+          <p class="seat-class">CLASSIC</p>
           <p class="seat-cost">Rs. 00.00</p>
           <p class="seat-avail">Available</p>
         </div>
@@ -49,12 +49,110 @@
       </div>
     </div>
     <!--  -->
-    <div class="ticket-details"></div>
+    <div class="ticket-details">
+      <div class="ticket-details-left">
+        <i class="ms-Icon ms-Icon--ChevronLeft ticket-back" onclick=" window.history.back()"></i>
+        <div class="ticket-show-details">
+          <div class="ticket-movie-name"><span>xxxx</span> &nbsp;<span class="ua-cert">UA</span></div>
+          <div class="ticket-theatre-name">xxxx</div>
+        </div>
+      </div>
+      <div class="ticket-details-right">
+        <a href="#" class="no-of-tickets"
+          ><span>2</span> Tickets
+          <i class="ms-Icon ms-Icon--ChevronDown"></i>
+        </a>
+        <a href="./index.html">
+          <i class="ms-Icon ms-Icon--ChromeClose ticket-close"></i>
+        </a>
+      </div>
+    </div>
     <div class="ticket-timings"></div>
-    <div class="main-area-wrapper">
-      <div class="main-area">
-        Seatings
-        <a href="./index.html">Home</a>
+    <div class="seat-grid-area">
+      <div class="seat-class-head">CLASSIC <span>Rs. 138.00</span></div>
+      <div class="seat-grid">
+        <div class="seat-row">
+          <div class="seat-row-head">D</div>
+          <div class="seat-column-list">
+            <div class="seat-column">1</div>
+            <div class="seat-column">2</div>
+            <div class="seat-column">3</div>
+            <div class="seat-column seat-disabled">4</div>
+            <div class="seat-column">5</div>
+            <div class="seat-spacer"></div>
+            <div class="seat-column">6</div>
+            <div class="seat-column">7</div>
+            <div class="seat-column">8</div>
+            <div class="seat-column">9</div>
+            <div class="seat-column">10</div>
+          </div>
+        </div>
+        <div class="seat-row">
+          <div class="seat-row-head">C</div>
+          <div class="seat-column-list">
+            <div class="seat-column">1</div>
+            <div class="seat-column">2</div>
+            <div class="seat-column">3</div>
+            <div class="seat-column">4</div>
+            <div class="seat-column">5</div>
+            <div class="seat-spacer"></div>
+            <div class="seat-column">6</div>
+            <div class="seat-column">7</div>
+            <div class="seat-column">8</div>
+            <div class="seat-column">9</div>
+            <div class="seat-column">10</div>
+          </div>
+        </div>
+        <div class="seat-row">
+          <div class="seat-row-head">B</div>
+          <div class="seat-column-list">
+            <div class="seat-column">1</div>
+            <div class="seat-column">2</div>
+            <div class="seat-column">3</div>
+            <div class="seat-column">4</div>
+            <div class="seat-column">5</div>
+            <div class="seat-spacer"></div>
+            <div class="seat-column">6</div>
+            <div class="seat-column">7</div>
+            <div class="seat-column">8</div>
+            <div class="seat-column">9</div>
+            <div class="seat-column">10</div>
+          </div>
+        </div>
+        <div class="seat-row">
+          <div class="seat-row-head">A</div>
+          <div class="seat-column-list">
+            <div class="seat-column">1</div>
+            <div class="seat-column">2</div>
+            <div class="seat-column">3</div>
+            <div class="seat-column">4</div>
+            <div class="seat-column">5</div>
+            <div class="seat-spacer"></div>
+            <div class="seat-column">6</div>
+            <div class="seat-column">7</div>
+            <div class="seat-column">8</div>
+            <div class="seat-column">9</div>
+            <div class="seat-column">10</div>
+          </div>
+        </div>
+      </div>
+      <div class="theatre-screen">
+        <div class="screen">Theatre Screen</div>
+        All eyes this way please!
+      </div>
+    </div>
+    <div class="seat-availibility">
+      <div class="seat-availibility-item">
+        <div class="seat-column seat-disabled"></div>
+        <p>Sold</p>
+      </div>
+      <div class="seat-availibility-item">
+        <div class="seat-column"></div>
+        <p>Available</p>
+      </div>
+      <div class="seat-availibility-item">
+        <div class="seat-column seat-selected"></div>
+        <p>Selected</p>
       </div>
     </div>
     <script src="./server.js"></script>
