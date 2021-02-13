@@ -700,6 +700,8 @@ input[type='radio'] {
 }
 .ticket-back {
   font-size: 1.5em;
+  cursor: pointer;
+  height: 100%;
 }
 .ticket-close {
   padding: 5px;
@@ -745,6 +747,7 @@ input[type='radio'] {
   margin-right: 150px;
 }
 .seat-column-list {
+  margin: auto;
   display: flex;
 }
 .seat-column {

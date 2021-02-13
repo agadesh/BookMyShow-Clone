@@ -32,7 +32,7 @@ document.getElementsByName('sradio-btn').forEach((elem, i) => {
     }
   });
 });
-//  ******************************** NO OF SEATS MODAL IMAGE ANIMATION
+//  ********************************* NO OF SEATS MODAL IMAGE ANIMATION
 
 seatList.forEach((seatno, i) => {
   seatno.addEventListener('mouseover', () => {

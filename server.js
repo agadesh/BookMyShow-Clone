@@ -219,6 +219,71 @@ const dataServer = (function () {
       seatprice: 120,
     },
   ];
+
+  const allSeatsTable = [
+    {
+      id: 0,
+      row: 'A',
+      column: 1,
+      screenid: 0,
+    },
+    {
+      id: 1,
+      row: 'A',
+      column: 2,
+      screenid: 0,
+    },
+    {
+      id: 2,
+      row: 'A',
+      column: 1,
+      screenid: 1,
+    },
+    {
+      id: 3,
+      row: 'A',
+      column: 2,
+      screenid: 1,
+    },
+    {
+      id: 4,
+      row: 'A',
+      column: 1,
+      screenid: 2,
+    },
+    {
+      id: 5,
+      row: 'A',
+      column: 2,
+      screenid: 2,
+    },
+    {
+      id: 6,
+      row: 'A',
+      column: 1,
+      screenid: 3,
+    },
+    {
+      id: 7,
+      row: 'A',
+      column: 2,
+      screenid: 3,
+    },
+  ];
+  const reservedSeatsTable = [
+    {
+      seatid: undefined,
+      bookingid: undefined,
+    },
+  ];
+  const bookingsTable = [
+    {
+      id: undefined,
+      screeningid: undefined,
+      noOfSeats: undefined,
+      totalprice: undefined,
+    },
+  ];
   return {
     getMovies: function getMovies() {
       return movieTable;
@@ -231,6 +296,15 @@ const dataServer = (function () {
     },
     getScreenings: function getScreenings() {
       return screeningTable;
+    },
+    getAllSeats: function getAllSeats() {
+      return allSeatsTable;
+    },
+    getReservedSeats: function getReservedSeats() {
+      return reservedSeatsTableSeatsTable;
+    },
+    getBookings: function getBookings() {
+      return bookingsTable;
     },
   };
 })();

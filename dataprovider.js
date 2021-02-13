@@ -5,7 +5,7 @@ const dataProvider = (function () {
       movie.tags.forEach(tag => {
         tagList += tag + '/';
       });
-      tagList = tagList.slice(0, -1); //removing last '/'
+      tagList = tagList.slice(0, -1); // removing last '/'
 
       movieList.innerHTML += `<div class="movie-list-item">
       <img src=${movie.movImgURL} alt="movie-poster" />
