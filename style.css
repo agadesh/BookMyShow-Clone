@@ -134,6 +134,7 @@ a {
   border-radius: 5px;
   width: 940px;
   height: 350px;
+  cursor: pointer;
 }
 #prevBtn,
 #nextBtn {
@@ -766,7 +767,9 @@ input[type='radio'] {
   width: 60px;
 }
 .seat-column:hover,
-.seat-selected {
+.seat-selected,
+.seat-selected-example {
+  cursor: pointer;
   background-color: #1ea83c;
   color: #fff;
 }
@@ -774,6 +777,7 @@ input[type='radio'] {
 .seat-disabled:hover {
   background-color: rgb(221, 220, 220);
   border: none;
+  cursor: default;
   color: #fff;
 }
 .theatre-screen {
@@ -811,4 +815,20 @@ input[type='radio'] {
 }
 .seat-availibility-item p {
   margin: 0px 5px;
+}
+.seat-confirm {
+  display: none;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  background-color: #fafafa;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 2px 2px 8px 2px #7e7e7e;
+}
+.seat-confirm-btn {
+  background-color: #f84464;
+  color: #fff;
+  padding: 11px 220px;
+  border-radius: 10px;
 }

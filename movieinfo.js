@@ -1,94 +1,114 @@
-// ************************************** INFO BANNER CLOSE BUTTON
+const movieInfo = (function () {
+  // ************************************** INFO BANNER CLOSE BUTTON
 
-const infoBanner = document.querySelector('.info-banner');
-const closeBannerBtn = document.querySelector('#closeBanner');
-closeBannerBtn.addEventListener('click', () => {
-  infoBanner.style.display = 'none';
-});
-
-// ************************************** RENDERING MOVIE DATA
-
-const movieId = location.search.substring(9);
-dataProvider.renderMovieDetails(movieId);
-
-// ************************DATE SLIDER
-
-let dateListPosition = 0;
-const dateList = document.querySelector('.date-selector');
-const dateprevBtn = document.querySelector('#dateprevBtn');
-const datenextBtn = document.querySelector('#datenextBtn');
-
-function DateSlide(dateSlidePosition) {
-  dateList.style.transform = 'translateX(' + -47 * dateSlidePosition + 'px)';
-}
-datenextBtn.addEventListener('click', () => {
-  if (dateListPosition >= 7) return;
-  dateListPosition++;
-  DateSlide(dateListPosition);
-});
-dateprevBtn.addEventListener('click', () => {
-  if (dateListPosition == 0) return;
-  dateListPosition--;
-  DateSlide(dateListPosition);
-});
-
-// ************************ DISPLAY DATES FOR A WEEK
-
-var currentDate = new Date();
-sessionStorage.setItem('movieDate', String(currentDate).substring(0, 15));
-let dateArray = [0, 1, 2, 3, 4, 5, 6, 7];
-let dayArray = [0, 1, 2, 3, 4, 5, 6, 7];
-
-dateArray.forEach((date, i) => {
-  dateArray[i] = String(new Date(currentDate.getTime() + 86400000 * i));
-  dayArray[i] = dateArray[i].substring(0, 3);
-  dateArray[i] = dateArray[i].substring(8, 10);
-});
-dayArray[0] = 'Today';
-dayArray[1] = 'TOM';
-
-const dates = document.querySelectorAll('.date-selector .date');
-const days = document.querySelectorAll('.date-selector .day');
-
-dates.forEach((date, i) => {
-  date.innerHTML = dateArray[i];
-});
-days.forEach((day, i) => {
-  day.innerHTML = dayArray[i];
-});
-
-// ********************************************************
-
-let showDate = String(new Date()).substring(4, 10);
-const theatreList = document.querySelector('.theatre-list');
-
-function showscreeningsformovie(showDate) {
-  let screeningsnow = dataServer.getScreenings().filter(function (screening) {
-    return screening.movieid == movieId && screening.date == showDate;
+  const infoBanner = document.querySelector('.info-banner');
+  const closeBannerBtn = document.querySelector('#closeBanner');
+  closeBannerBtn.addEventListener('click', () => {
+    infoBanner.style.display = 'none';
   });
-  if (screeningsnow.length == 0) {
-    theatreList.innerHTML = '<div class="no-shows">No Shows on Date. Please select another date.</div>';
-    return;
+
+  // ************************************** RENDERING MOVIE DATA
+
+  const movieId = location.search.substring(9);
+  const thisMovie = dataServer.getMovie(movieId);
+  const movieInfoBar = document.querySelector('.movie-infobar-wrapper');
+  let movieTagList = '';
+  thisMovie.tags.forEach(tag => {
+    movieTagList += `<div class="keyword">${tag}</div>`;
+  });
+
+  movieInfoBar.innerHTML = `<div class="movie-infobar">
+  <p class="movie-name"><span>${thisMovie.name}</span></p>
+  <div class="movie-info">
+  <span class="ua-cert">UA</span>
+  <div class="review">
+  <div class="rating">
+          <i class="ms-Icon ms-Icon--HeartFill heart-review"></i>
+          <span class="likes">${thisMovie.likes + ' %'}</span>
+          </div>
+          <span class="votes">${thisMovie.votes + ' VOTES'}</span>
+          </div>
+          <div class="tags">${movieTagList}</div>
+          <p class="release-date">${thisMovie.release}</p>
+          <p class="duration"><i class="ms-Icon ms-Icon--Timer"></i><span>${thisMovie.duration}</span></p>
+          </div>
+          </div>`;
+
+  // ************************DATE SLIDER
+
+  let dateListPosition = 0;
+  const dateList = document.querySelector('.date-selector');
+  const dateprevBtn = document.querySelector('#dateprevBtn');
+  const datenextBtn = document.querySelector('#datenextBtn');
+
+  function DateSlide(dateSlidePosition) {
+    dateList.style.transform = 'translateX(' + -47 * dateSlidePosition + 'px)';
   }
-  console.log(screeningsnow, 'screenings'); // showing screenings for selected movie on particular date
-  let theatres = [];
-  screeningsnow.forEach(screening => {
-    theatres.push(screening.theatreid);
+  datenextBtn.addEventListener('click', () => {
+    if (dateListPosition >= 7) return;
+    dateListPosition++;
+    DateSlide(dateListPosition);
   });
-  theatres = [...new Set(theatres)];
-  theatreList.innerHTML = '';
-  theatres.forEach(theatreid => {
-    const thisTheatre = dataServer.getTheatres().find(theatre => {
-      return theatre.id == theatreid;
-    });
-    let theatreTimingsList = '';
-    screeningsnow.forEach(screening => {
-      if (screening.theatreid == theatreid) {
-        theatreTimingsList += `<div class="theatre-timing" onclick="selectTimeslot(${screening.id})">${screening.timing}</div>`;
-      }
-    });
+  dateprevBtn.addEventListener('click', () => {
+    if (dateListPosition == 0) return;
+    dateListPosition--;
+    DateSlide(dateListPosition);
+  });
 
-    (function renderTheatre() {
+  // ************************ DISPLAY DATES FOR A WEEK
+
+  var currentDate = new Date();
+
+  let dateArray = [0, 1, 2, 3, 4, 5, 6, 7];
+  let dayArray = [0, 1, 2, 3, 4, 5, 6, 7];
+
+  dateArray.forEach((date, i) => {
+    dateArray[i] = String(new Date(currentDate.getTime() + 86400000 * i));
+    dayArray[i] = dateArray[i].substring(0, 3);
+    dateArray[i] = dateArray[i].substring(8, 10);
+  });
+  dayArray[0] = 'Today';
+  dayArray[1] = 'TOM';
+
+  const dates = document.querySelectorAll('.date-selector .date');
+  const days = document.querySelectorAll('.date-selector .day');
+
+  dates.forEach((date, i) => {
+    date.innerHTML = dateArray[i];
+  });
+  days.forEach((day, i) => {
+    day.innerHTML = dayArray[i];
+  });
+
+  // ********************************************************
+
+  let showDate = String(new Date()).substring(4, 10);
+  const theatreList = document.querySelector('.theatre-list');
+
+  function showscreeningsformovie(showDate) {
+    let screeningsnow = dataServer.getScreeningsNow(movieId, showDate);
+
+    if (screeningsnow.length == 0) {
+      theatreList.innerHTML = '<div class="no-shows">No Shows on Date. Please select another date.</div>';
+      return;
+    }
+    console.log(screeningsnow, 'screenings'); // showing screenings for selected movie on particular date
+    let theatres = [];
+    screeningsnow.forEach(screening => {
+      theatres.push(screening.theatreid);
+    });
+    theatres = [...new Set(theatres)];
+    theatreList.innerHTML = '';
+    theatres.forEach(theatreId => {
+      const thisTheatre = dataServer.getTheatre(theatreId);
+      let theatreTimingsList = '';
+      screeningsnow.forEach(screening => {
+        if (screening.theatreid == theatreId) {
+          theatreTimingsList += `<div class="theatre-timing" onclick="movieInfo.selectTimeslot(${screening.id})">${screening.timing}</div>`;
+        }
+      });
+
+      //  renderTheatre
       theatreList.innerHTML += `<div class="theatre">
       <i class="ms-Icon ms-Icon--HeartFill"></i>
       <div class="theatre-name-div">
@@ -104,8 +124,8 @@ function showscreeningsformovie(showDate) {
       </div>
       </div>
       </div>
-        <div class="thinfo-icon">
-        <i class="ms-Icon ms-Icon--ShieldSolid"></i>
+      <div class="thinfo-icon">
+      <i class="ms-Icon ms-Icon--ShieldSolid"></i>
         <p>INFO</p>
         </div>
         <div class="theatre-timings-div">
@@ -117,36 +137,33 @@ function showscreeningsformovie(showDate) {
         </div>
         </div>
         </div>`;
-    })();
-  });
-}
-showscreeningsformovie(showDate);
-// ******************************************************* DATE SELECTOR
-const dateItem = document.querySelectorAll('.date-item');
+    });
+  }
+  showscreeningsformovie(showDate);
+  // ******************************************************* DATE SELECTOR
+  const dateItem = document.querySelectorAll('.date-item');
 
-document.getElementsByName('dradio-btn').forEach((elem, i) => {
-  elem.addEventListener('change', function (event) {
-    dateListPosition = event.target.value - 1;
-    DateSlide(dateListPosition);
-    dateItem[i].classList.add('di-active');
-    showDate = String(new Date(currentDate.getTime() + 86400000 * dateListPosition)).substring(4, 10);
-    console.log(showDate, 'date'); //Showing date
-    showscreeningsformovie(showDate);
-    sessionStorage.setItem('movieDate', showDate);
-    for (let a = 0; a < 8; a++) {
-      if (a != i) {
-        dateItem[a].classList.remove('di-active');
+  document.getElementsByName('dradio-btn').forEach((elem, i) => {
+    elem.addEventListener('change', function (event) {
+      dateListPosition = event.target.value - 1;
+      DateSlide(dateListPosition);
+      dateItem[i].classList.add('di-active');
+      showDate = String(new Date(currentDate.getTime() + 86400000 * dateListPosition)).substring(4, 10);
+      console.log(showDate, 'date'); //Showing date
+      showscreeningsformovie(showDate);
+
+      for (let a = 0; a < 8; a++) {
+        if (a != i) {
+          dateItem[a].classList.remove('di-active');
+        }
       }
-    }
+    });
   });
-});
 
-function selectTimeslot(screeningid) {
-  // const currentScreening = dataServer.getScreenings().find(function (screening) {
-  //   return screening.id == screeningid;
-  // });
-  // sessionStorage.setItem('movieTheatreid', currentScreening.theatreid);
-  // sessionStorage.setItem('movieTime', currentScreening.timing);
-  // console.log(screeningid, currentScreening.theatreid, currentScreening.timing);
-  window.open(`./seatlayout.html?screeningid=${screeningid}`, '_self');
-}
+  function selectTimeslot(screeningid) {
+    window.open(`./seatlayout.html?screeningid=${screeningid}`, '_self');
+  }
+  return {
+    selectTimeslot: selectTimeslot,
+  };
+})();
