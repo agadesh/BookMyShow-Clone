@@ -186,7 +186,7 @@ const seatLayout = (function () {
     });
     console.log(selectedSeatIdList, 'seat ids of currently selected seats');
 
-    dataProvider.bookTickets(thisScreening.id, thisScreening.seatprice, selectedSeatIdList);
-    dataProvider.getbookedseatsforScreening(thisScreening);
+    const thisBookingId = dataProvider.bookTickets(thisScreening.id, thisScreening.seatprice, selectedSeatIdList);
+    window.open('./ticket.html?bookingid=' + thisBookingId, '_self');
   });
 })();

@@ -472,8 +472,8 @@ const dataServer = (function () {
     },
   ];
   (function loadTablesintoLocalStorage() {
-    if (localStorage.getItem('reservedSeatsTable') == null) {
-      console.log('loading tables into LS');
+    if (localStorage.getItem('bookingsTable') == null && localStorage.getItem('reservedSeatsTable') == null) {
+      console.log('loading tables into LocalStorage');
       localStorage.setItem('reservedSeatsTable', JSON.stringify(reservedSeatsTable));
       localStorage.setItem('bookingsTable', JSON.stringify(bookingsTable));
     }
@@ -495,8 +495,10 @@ const dataServer = (function () {
         return theatre.id == theatreId;
       });
     },
-    getScreens: function () {
-      return theatreScreenTable;
+    getScreen: function (screenId) {
+      return theatreScreenTable.find(function (screen) {
+        return screen.id == screenId;
+      });
     },
     getAllScreenings: function () {
       return screeningTable;
@@ -539,6 +541,11 @@ const dataServer = (function () {
     },
     getAllBookings: function () {
       return JSON.parse(localStorage.getItem('bookingsTable'));
+    },
+    getBooking: function (bookingId) {
+      return JSON.parse(localStorage.getItem('bookingsTable')).find(function (booking) {
+        return booking.id == bookingId;
+      });
     },
   };
 })();

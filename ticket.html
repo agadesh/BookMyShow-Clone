@@ -8,10 +8,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <h1>Ticket</h1>
-    <a href="./index.html">Home BMS</a>
+  <body class="gray">
+    <div class="ticket-details">
+      <div class="ticket-details-left">
+        <i class="ms-Icon ms-Icon--ChevronLeft ticket-back" onclick="history.go(-3)"></i>
+        <div class="ticket-show-details">
+          <div class="ticket-movie-name"><span>xxxx</span> &nbsp;<span class="ua-cert">UA</span></div>
+          <div class="ticket-theatre-name">xxxx</div>
+        </div>
+      </div>
+      <div class="ticket-details-right">
+        <a href="./index.html">
+          <i class="ms-Icon ms-Icon--ChromeClose ticket-close"></i>
+        </a>
+      </div>
+    </div>
+    <div class="ticket-wrapper">
+      <div class="colourbar">
+        <img src="./media/logobms.png" alt="BMS-logo" />
+      </div>
+      <div class="circle-left"></div>
+      <div class="circle-right"></div>
+      <h2 class="head">BOOKING SUMMARY</h2>
+      <div class="show-details">
+        <div class="moviename">Movie - <span>xx</span></div>
+        <div class="theatrename">Theatre - <span>xx</span></div>
+        <div class="showtime">Time - <span>xx</span></div>
+      </div>
+      <div class="seat-details">
+        <div class="seats-list">CLASSIC - &nbsp;<span>xx</span></div>
+        <div class="seat-price">Rs. <span>00.00</span></div>
+      </div>
+      <div class="screen-details">SCREEN NO. - <span>xx</span></div>
+      <div class="total-amount-details">
+        <div class="total-amount-text">TOTAL AMOUNT -</div>
+        <div class="total-amount">Rs. <span>00.00</span></div>
+      </div>
+      <div class="colourbar"></div>
+    </div>
     <script src="./dataserver.js"></script>
     <script src="./dataprovider.js"></script>
+    <script src="./ticket.js"></script>
   </body>
 </html>
