@@ -36,24 +36,24 @@ const dataProvider = (function () {
     return bookedSeatsNoList;
   }
   function bookTickets(screeningId, seatPrice, seatIdList) {
-    const bookingtable = JSON.parse(sessionStorage.getItem('bookingsTable'));
+    const bookingtable = JSON.parse(localStorage.getItem('bookingsTable'));
     bookingtable.push({
       id: bookingtable.length,
       screeningid: screeningId,
       noOfSeats: seatIdList.length,
       totalprice: seatPrice * seatIdList.length,
     });
-    sessionStorage.setItem('bookingsTable', JSON.stringify(bookingtable));
-    console.log(JSON.parse(sessionStorage.getItem('bookingsTable')), 'booking added');
-    const reservationTable = JSON.parse(sessionStorage.getItem('reservedSeatsTable'));
+    localStorage.setItem('bookingsTable', JSON.stringify(bookingtable));
+    console.log(JSON.parse(localStorage.getItem('bookingsTable')), 'booking added');
+    const reservationTable = JSON.parse(localStorage.getItem('reservedSeatsTable'));
     seatIdList.forEach(seatid => {
       reservationTable.push({
         seatid: seatid,
-        bookingid: JSON.parse(sessionStorage.getItem('bookingsTable')).length - 1,
+        bookingid: JSON.parse(localStorage.getItem('bookingsTable')).length - 1,
       });
     });
-    sessionStorage.setItem('reservedSeatsTable', JSON.stringify(reservationTable));
-    console.log(JSON.parse(sessionStorage.getItem('reservedSeatsTable')), 'seat reservation added');
+    localStorage.setItem('reservedSeatsTable', JSON.stringify(reservationTable));
+    console.log(JSON.parse(localStorage.getItem('reservedSeatsTable')), 'seat reservation added');
   }
   return {
     showscreeningsformovie,

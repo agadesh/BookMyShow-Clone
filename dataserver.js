@@ -463,7 +463,6 @@ const dataServer = (function () {
       bookingid: 0,
     },
   ];
-  sessionStorage.setItem('reservedSeatsTable', JSON.stringify(reservedSeatsTable));
   const bookingsTable = [
     {
       id: 0,
@@ -472,8 +471,13 @@ const dataServer = (function () {
       totalprice: 200,
     },
   ];
-  sessionStorage.setItem('bookingsTable', JSON.stringify(bookingsTable));
-
+  (function loadTablesintoLocalStorage() {
+    if (localStorage.getItem('reservedSeatsTable') == null) {
+      console.log('loading tables into LS');
+      localStorage.setItem('reservedSeatsTable', JSON.stringify(reservedSeatsTable));
+      localStorage.setItem('bookingsTable', JSON.stringify(bookingsTable));
+    }
+  })();
   return {
     getMovies: function () {
       return movieTable;
@@ -521,20 +525,20 @@ const dataServer = (function () {
       return allSeatsTable;
     },
     getReservedSeatsByBooking: function (bookingId) {
-      return JSON.parse(sessionStorage.getItem('reservedSeatsTable')).filter(function (seat) {
+      return JSON.parse(localStorage.getItem('reservedSeatsTable')).filter(function (seat) {
         return seat.bookingid == bookingId;
       });
     },
     getReservedSeats: function () {
-      return JSON.parse(sessionStorage.getItem('reservedSeatsTable'));
+      return JSON.parse(localStorage.getItem('reservedSeatsTable'));
     },
     getBookingsByScreening: function (screeningId) {
-      return JSON.parse(sessionStorage.getItem('bookingsTable')).filter(function (booking) {
+      return JSON.parse(localStorage.getItem('bookingsTable')).filter(function (booking) {
         return booking.screeningid == screeningId;
       });
     },
     getAllBookings: function () {
-      return JSON.parse(sessionStorage.getItem('bookingsTable'));
+      return JSON.parse(localStorage.getItem('bookingsTable'));
     },
   };
 })();
