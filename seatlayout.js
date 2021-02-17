@@ -5,9 +5,7 @@ const seatLayout = (function () {
   window.onload = seatNoModalElement.style.display = 'block';
 
   //display seat no modal on clicking seats in bar
-  const noOfSeatsElement = document.querySelector('.no-of-tickets');
-
-  noOfSeatsElement.onclick = function () {
+  document.querySelector('.no-of-tickets').onclick = function () {
     seatNoModalElement.style.display = 'block';
   };
 
@@ -16,19 +14,18 @@ const seatLayout = (function () {
 
   // update no. of seats in bar
   function UpdateSeatNoInBar() {
-    const noOfSeatsData = document.querySelector('.no-of-tickets span');
-    noOfSeatsData.innerHTML = sessionStorage.getItem('seats');
+    document.querySelector('.no-of-tickets span').innerHTML = sessionStorage.getItem('seats');
   }
   UpdateSeatNoInBar();
 
   // hide modal on clicking select seat button
-  const selectNoOfSeatsBtn = document.querySelector('.select-seat-btn');
-
-  selectNoOfSeatsBtn.onclick = function () {
+  document.querySelector('.select-seat-btn').onclick = function () {
     seatNoModalElement.style.display = 'none';
   };
 
   const seatListItemElements = document.querySelectorAll('.seat-no-list-item');
+  const seatConfirmBar = document.querySelector('.seat-confirm');
+
   // ****************************** NO OF SEATS SELECTOR (RADIO BTNS)
 
   document.getElementsByName('sradio-btn').forEach((elem, i) => {
@@ -65,26 +62,24 @@ const seatLayout = (function () {
   });
 
   // ******************************************************
-
-  const seatCostElement = document.querySelector('.seat-cost span');
-  const movieNameElement = document.querySelector('.ticket-movie-name span');
-  const theatreNameElement = document.querySelector('.ticket-theatre-name');
-  const ticketTimingsElement = document.querySelector('.ticket-timings');
   const thisScreening = dataServer.getScreening(location.search.substring(13));
   const thisMovie = dataServer.getMovie(thisScreening.movieid);
   const thisTheatre = dataServer.getTheatre(thisScreening.theatreid);
 
-  function updateTotalPrice() {
-    const totalPrice = document.querySelector('.seat-confirm-btn span');
-    totalPrice.innerHTML = Number(sessionStorage.getItem('seats')) * thisScreening.seatprice;
-  }
-  updateTotalPrice();
-
+  const seatCostElement = document.querySelector('.seat-cost span');
   seatCostElement.innerHTML = thisScreening.seatprice + '.00';
-  movieNameElement.innerHTML = thisMovie.name;
-  theatreNameElement.innerHTML = thisTheatre.name + ': ' + thisTheatre.address;
-  ticketTimingsElement.innerHTML = getDay(thisScreening.date) + ', ' + thisScreening.date + ', ' + thisScreening.timing;
 
+  const seatClassElement = document.querySelector('.seat-class-head span');
+  seatClassElement.innerHTML = thisScreening.seatprice + '.00';
+
+  const movieNameElement = document.querySelector('.ticket-movie-name span');
+  movieNameElement.innerHTML = thisMovie.name;
+
+  const theatreNameElement = document.querySelector('.ticket-theatre-name');
+  theatreNameElement.innerHTML = thisTheatre.name + ': ' + thisTheatre.address;
+
+  const screeningTimingElement = document.querySelector('.ticket-timings');
+  screeningTimingElement.innerHTML = getDay(thisScreening.date) + ', ' + thisScreening.date + ', ' + thisScreening.timing;
   function getDay(date) {
     const todayDate = Number(String(new Date()).substring(8, 10));
     const dayDiff = date.substring(4, 6) - todayDate;
@@ -97,21 +92,40 @@ const seatLayout = (function () {
     }
   }
 
-  const seatElements = document.querySelectorAll('.seat-column-list .seat-column');
-  const seatConfirmBar = document.querySelector('.seat-confirm');
+  function updateTotalPrice() {
+    const totalPrice = document.querySelector('.seat-confirm-btn span');
+    totalPrice.innerHTML = Number(sessionStorage.getItem('seats')) * thisScreening.seatprice + '.00';
+  }
+  updateTotalPrice();
 
+  const seatElements = document.querySelectorAll('.seat-column-list .seat-column');
+
+  // get seats currently selected
   function getSelectedSeats() {
     return document.querySelectorAll('.seat-selected');
   }
 
+  // clear selected seats
+  function clearSeatSelection() {
+    seatElements.forEach(seat => {
+      seat.classList.remove('seat-selected');
+    });
+  }
+
+  // seat selection system
   seatElements.forEach((seatElement, seatElementIndex) => {
     seatElement.addEventListener('click', () => {
+      // no events for disabled seats
       if (seatElement.classList.contains('seat-disabled')) return;
+
+      // clear seat selection if selecting more than no of seats
       if (getSelectedSeats().length == sessionStorage.getItem('seats')) {
         clearSeatSelection();
       }
+
       let skipDisabledSeat = 0;
-      // select seats automatically
+
+      // select required no of seats automatically
       let noOfSeatsSelected = getSelectedSeats().length;
       for (let a = seatElementIndex; a < sessionStorage.getItem('seats') - noOfSeatsSelected + seatElementIndex + skipDisabledSeat; a++) {
         // prevent moving out of seat grid
@@ -123,6 +137,7 @@ const seatLayout = (function () {
         }
         seatElements[a].classList.add('seat-selected');
       }
+
       // show pay button if particular no of seats are selected
       if (sessionStorage.getItem('seats') == getSelectedSeats().length) {
         seatConfirmBar.style.display = 'block';
@@ -132,35 +147,10 @@ const seatLayout = (function () {
     });
   });
 
-  function clearSeatSelection() {
-    seatElements.forEach(seat => {
-      seat.classList.remove('seat-selected');
-    });
-  }
-
   // ********************* disable occupied Seats
 
-  const allBookingsforScreening = dataServer.getBookingsByScreening(thisScreening.id);
-
-  // getting seat ids of already booked seats from bookings
-  const bookedSeatsIdList = [];
-
-  allBookingsforScreening.forEach(booking => {
-    const reservedSeats = dataServer.getReservedSeatsByBooking(booking.id);
-    reservedSeats.forEach(reservedSeat => {
-      bookedSeatsIdList.push(reservedSeat.seatid);
-    });
-  });
-  console.log(bookedSeatsIdList, 'seat ids of booked seats');
-
-  // getting seat no of already booked seats from seat id
-  const bookedSeatsNoList = [];
-
-  bookedSeatsIdList.forEach(seatid => {
-    const seat = dataServer.getSeat(seatid);
-    bookedSeatsNoList.push(`${seat.row}${seat.column}`);
-  });
-  console.log(bookedSeatsNoList, 'seat nos of booked seats');
+  // getting seat no list of already booked seats
+  const bookedSeatsNoList = dataProvider.getbookedseatsforScreening(thisScreening);
 
   // disabling already booked seats in seat grid by seat no
   seatElements.forEach(seat => {
@@ -178,7 +168,6 @@ const seatLayout = (function () {
   seatConfirmBtn.addEventListener('click', () => {
     // geting seat no of currently selected seats
     const selectedSeatNoList = [];
-
     getSelectedSeats().forEach(selectedSeat => {
       selectedSeatNoList.push(selectedSeat.getAttribute('data-seat'));
     });
@@ -187,7 +176,6 @@ const seatLayout = (function () {
     // getting seat ids of currently selected seats from seat no
     const allSeatsforScreening = dataServer.getAllSeatsByScreening(thisScreening.id);
     const selectedSeatIdList = [];
-
     allSeatsforScreening.forEach(seat => {
       const seatno = seat.row + seat.column;
       selectedSeatNoList.forEach(selectedSeatNo => {
@@ -198,6 +186,7 @@ const seatLayout = (function () {
     });
     console.log(selectedSeatIdList, 'seat ids of currently selected seats');
 
-    dataServer.booktickets(thisScreening.id, Number(sessionStorage.getItem('seats')), thisScreening.seatprice, selectedSeatIdList);
+    dataProvider.bookTickets(thisScreening.id, thisScreening.seatprice, selectedSeatIdList);
+    dataProvider.getbookedseatsforScreening(thisScreening);
   });
 })();

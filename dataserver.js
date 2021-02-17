@@ -407,7 +407,7 @@ const dataServer = (function () {
         return screening.id == screeningId;
       });
     },
-    getScreeningsNow: function (movieId, showDate) {
+    getScreeningsOnDate: function (movieId, showDate) {
       return screeningTable.filter(function (screening) {
         return screening.movieid == movieId && screening.date == showDate;
       });
@@ -440,26 +440,6 @@ const dataServer = (function () {
     },
     getAllBookings: function () {
       return JSON.parse(sessionStorage.getItem('bookingsTable'));
-    },
-    booktickets: function (screeningId, noOfSeats, seatPrice, seatIdList) {
-      const bookingtable = JSON.parse(sessionStorage.getItem('bookingsTable'));
-      bookingtable.push({
-        id: bookingtable.length,
-        screeningid: screeningId,
-        noOfSeats: noOfSeats,
-        totalprice: seatPrice * noOfSeats,
-      });
-      sessionStorage.setItem('bookingsTable', JSON.stringify(bookingtable));
-      console.log(JSON.parse(sessionStorage.getItem('bookingsTable')), 'booking added');
-      const reservationTable = JSON.parse(sessionStorage.getItem('reservedSeatsTable'));
-      seatIdList.forEach(seatid => {
-        reservationTable.push({
-          seatid: seatid,
-          bookingid: JSON.parse(sessionStorage.getItem('bookingsTable')).length - 1,
-        });
-      });
-      sessionStorage.setItem('reservedSeatsTable', JSON.stringify(reservationTable));
-      console.log(JSON.parse(sessionStorage.getItem('reservedSeatsTable')), 'seat reservation added');
     },
   };
 })();

@@ -80,36 +80,51 @@ const movieInfo = (function () {
     day.innerHTML = dayArray[i];
   });
 
-  // ********************************************************
-
+  // ******************************************************* DATE SELECTOR
   let showDate = String(new Date()).substring(4, 10);
-  const theatreList = document.querySelector('.theatre-list');
+  const dateItem = document.querySelectorAll('.date-item');
 
-  function showscreeningsformovie(showDate) {
-    let screeningsnow = dataServer.getScreeningsNow(movieId, showDate);
+  document.getElementsByName('dradio-btn').forEach((elem, i) => {
+    elem.addEventListener('change', function (event) {
+      dateListPosition = event.target.value - 1;
+      DateSlide(dateListPosition);
+      dateItem[i].classList.add('di-active');
+      showDate = String(new Date(currentDate.getTime() + 86400000 * dateListPosition)).substring(4, 10);
+      console.log(showDate, 'date'); //Showing date
+      renderTheatres();
 
-    if (screeningsnow.length == 0) {
-      theatreList.innerHTML = '<div class="no-shows">No Shows on Date. Please select another date.</div>';
+      for (let a = 0; a < 8; a++) {
+        if (a != i) {
+          dateItem[a].classList.remove('di-active');
+        }
+      }
+    });
+  });
+
+  // ********************************** RENDER THEATRE SCREENINGS
+
+  function renderTheatres() {
+    const theatreListElement = document.querySelector('.theatre-list');
+    theatreListElement.innerHTML = '';
+
+    const screeningsformovie = dataProvider.showscreeningsformovie(showDate, movieId);
+
+    if (screeningsformovie.screeningsOnDate.length == 0) {
+      theatreListElement.innerHTML = '<div class="no-shows">No Shows on Date. Please select another date.</div>';
       return;
     }
-    console.log(screeningsnow, 'screenings'); // showing screenings for selected movie on particular date
-    let theatres = [];
-    screeningsnow.forEach(screening => {
-      theatres.push(screening.theatreid);
-    });
-    theatres = [...new Set(theatres)];
-    theatreList.innerHTML = '';
-    theatres.forEach(theatreId => {
+    screeningsformovie.theatresOnDate.forEach(theatreId => {
       const thisTheatre = dataServer.getTheatre(theatreId);
-      let theatreTimingsList = '';
-      screeningsnow.forEach(screening => {
+      let screeningsList = '';
+      // get screenings for theatre
+      screeningsformovie.screeningsOnDate.forEach(screening => {
         if (screening.theatreid == theatreId) {
-          theatreTimingsList += `<div class="theatre-timing" onclick="movieInfo.selectTimeslot(${screening.id})">${screening.timing}</div>`;
+          screeningsList += `<div class="theatre-timing" onclick="movieInfo.selectTimeslot(${screening.id})">${screening.timing}</div>`;
         }
       });
 
-      //  renderTheatre
-      theatreList.innerHTML += `<div class="theatre">
+      //  render theatre
+      theatreListElement.innerHTML += `<div class="theatre">
       <i class="ms-Icon ms-Icon--HeartFill"></i>
       <div class="theatre-name-div">
       <p>${thisTheatre.name + ': ' + thisTheatre.address}</p>
@@ -133,32 +148,13 @@ const movieInfo = (function () {
         <i class="ms-Icon ms-Icon--ShieldSolid"></i>
         <p>My Safety First</p>
         </div>
-        <div class="theatre-timings-list">${theatreTimingsList}
+        <div class="theatre-timings-list">${screeningsList}
         </div>
         </div>
         </div>`;
     });
   }
-  showscreeningsformovie(showDate);
-  // ******************************************************* DATE SELECTOR
-  const dateItem = document.querySelectorAll('.date-item');
-
-  document.getElementsByName('dradio-btn').forEach((elem, i) => {
-    elem.addEventListener('change', function (event) {
-      dateListPosition = event.target.value - 1;
-      DateSlide(dateListPosition);
-      dateItem[i].classList.add('di-active');
-      showDate = String(new Date(currentDate.getTime() + 86400000 * dateListPosition)).substring(4, 10);
-      console.log(showDate, 'date'); //Showing date
-      showscreeningsformovie(showDate);
-
-      for (let a = 0; a < 8; a++) {
-        if (a != i) {
-          dateItem[a].classList.remove('di-active');
-        }
-      }
-    });
-  });
+  renderTheatres();
 
   function selectTimeslot(screeningid) {
     window.open(`./seatlayout.html?screeningid=${screeningid}`, '_self');
