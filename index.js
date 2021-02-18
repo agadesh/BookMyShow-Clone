@@ -1,4 +1,7 @@
-const home = (function () {
+const index = (function () {
+  function init() {
+    dataServer.loadTablesintoLocalStorage();
+  }
   // ************************************ RENDERING MOVIE LIST
 
   const movieList = document.querySelector('.movie-list');

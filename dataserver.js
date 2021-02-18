@@ -471,14 +471,14 @@ const dataServer = (function () {
       totalprice: 200,
     },
   ];
-  (function loadTablesintoLocalStorage() {
-    if (localStorage.getItem('bookingsTable') == null && localStorage.getItem('reservedSeatsTable') == null) {
-      console.log('loading tables into LocalStorage');
-      localStorage.setItem('reservedSeatsTable', JSON.stringify(reservedSeatsTable));
-      localStorage.setItem('bookingsTable', JSON.stringify(bookingsTable));
-    }
-  })();
   return {
+    loadTablesintoLocalStorage: function () {
+      if (localStorage.getItem('bookingsTable') == null && localStorage.getItem('reservedSeatsTable') == null) {
+        console.log('loading tables into LocalStorage');
+        localStorage.setItem('reservedSeatsTable', JSON.stringify(reservedSeatsTable));
+        localStorage.setItem('bookingsTable', JSON.stringify(bookingsTable));
+      }
+    },
     getMovies: function () {
       return movieTable;
     },
