@@ -569,7 +569,7 @@ input[type='radio'] {
   margin-top: -10px;
 }
 .footer {
-  height: 30px;
+  height: 35px;
   background-color: #222539;
 }
 /* ********************************************************************** */
@@ -636,6 +636,11 @@ input[type='radio'] {
 }
 .sn-active {
   background-color: #f84464;
+  color: #fff;
+}
+.sn-disabled,
+.sn-disabled:hover {
+  background-color: #eee;
   color: #fff;
 }
 .seat-price-details {

@@ -57,9 +57,20 @@ const dataProvider = (function () {
     console.log(JSON.parse(localStorage.getItem('reservedSeatsTable')), 'seat reservation added');
     return bookingtable.length - 1;
   }
+
+  function screeningHousefull(screeningId) {
+    const screenings = JSON.parse(localStorage.getItem('screeningTable'));
+    screenings.forEach(screening => {
+      if (screening.id == screeningId) {
+        screening.seatsAvailable = false;
+      }
+    });
+    localStorage.setItem('screeningTable', JSON.stringify(screenings));
+  }
   return {
     showscreeningsformovie,
     getbookedseatsforScreening,
     bookTickets,
+    screeningHousefull,
   };
 })();

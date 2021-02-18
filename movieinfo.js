@@ -118,11 +118,13 @@ const movieInfo = (function () {
       let screeningsList = '';
       // get screenings for theatre
       screeningsformovie.screeningsOnDate.forEach(screening => {
-        if (screening.theatreid == theatreId) {
+        if (screening.theatreid == theatreId && screening.seatsAvailable == true) {
           screeningsList += `<div class="theatre-timing" onclick="movieInfo.selectTimeslot(${screening.id})">${screening.timing}</div>`;
         }
       });
-
+      if (screeningsList.length == 0) {
+        return;
+      }
       //  render theatre
       theatreListElement.innerHTML += `<div class="theatre">
       <i class="ms-Icon ms-Icon--HeartFill"></i>
@@ -153,6 +155,9 @@ const movieInfo = (function () {
         </div>
         </div>`;
     });
+    if (theatreListElement.innerHTML == '') {
+      theatreListElement.innerHTML = '<div class="no-shows">No Shows on Date. Please select another date.</div>';
+    }
   }
   renderTheatres();
 

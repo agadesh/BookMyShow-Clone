@@ -2,6 +2,7 @@ const index = (function () {
   function init() {
     dataServer.loadTablesintoLocalStorage();
   }
+  window.onload = init();
   // ************************************ RENDERING MOVIE LIST
 
   const movieList = document.querySelector('.movie-list');

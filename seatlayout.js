@@ -25,10 +25,41 @@ const seatLayout = (function () {
 
   const seatListItemElements = document.querySelectorAll('.seat-no-list-item');
   const seatConfirmBar = document.querySelector('.seat-confirm');
+  const seatElements = document.querySelectorAll('.seat-column-list .seat-column');
+
+  const thisScreening = dataServer.getScreening(location.search.substring(13));
+
+  // ********************* disable occupied Seats
+
+  // getting seat no list of already booked seats
+  const bookedSeatsNoList = dataProvider.getbookedseatsforScreening(thisScreening);
+
+  // disabling already booked seats in seat grid by seat no
+  seatElements.forEach(seat => {
+    const seatNo = seat.getAttribute('data-seat');
+    bookedSeatsNoList.forEach(bookedSeatNo => {
+      if (bookedSeatNo == seatNo) {
+        seat.classList.add('seat-disabled');
+      }
+    });
+  });
 
   // ****************************** NO OF SEATS SELECTOR (RADIO BTNS)
 
+  let noOfDisabledSeats = 0;
+  seatElements.forEach(seatElement => {
+    if (seatElement.classList.contains('seat-disabled')) {
+      noOfDisabledSeats++;
+    }
+  });
+  const noOfAvailableSeats = seatElements.length - noOfDisabledSeats;
+
+  console.log(noOfAvailableSeats, 'avail');
   document.getElementsByName('sradio-btn').forEach((elem, i) => {
+    if (elem.value > noOfAvailableSeats) {
+      elem.disabled = true;
+      seatListItemElements[elem.value - 1].classList.add('sn-disabled');
+    }
     elem.addEventListener('change', () => {
       seatListItemElements[i].classList.add('sn-active');
       //  update no of seats in session storage
@@ -46,7 +77,6 @@ const seatLayout = (function () {
   });
 
   //  ********************************* NO OF SEATS MODAL IMAGE ANIMATION
-
   const vehicleImageElement = document.querySelector('.seat-image img');
 
   seatListItemElements.forEach((seatno, i) => {
@@ -62,7 +92,6 @@ const seatLayout = (function () {
   });
 
   // ******************************************************
-  const thisScreening = dataServer.getScreening(location.search.substring(13));
   const thisMovie = dataServer.getMovie(thisScreening.movieid);
   const thisTheatre = dataServer.getTheatre(thisScreening.theatreid);
 
@@ -97,8 +126,6 @@ const seatLayout = (function () {
     totalPrice.innerHTML = Number(sessionStorage.getItem('seats')) * thisScreening.seatprice + '.00';
   }
   updateTotalPrice();
-
-  const seatElements = document.querySelectorAll('.seat-column-list .seat-column');
 
   // get seats currently selected
   function getSelectedSeats() {
@@ -147,21 +174,6 @@ const seatLayout = (function () {
     });
   });
 
-  // ********************* disable occupied Seats
-
-  // getting seat no list of already booked seats
-  const bookedSeatsNoList = dataProvider.getbookedseatsforScreening(thisScreening);
-
-  // disabling already booked seats in seat grid by seat no
-  seatElements.forEach(seat => {
-    const seatNo = seat.getAttribute('data-seat');
-    bookedSeatsNoList.forEach(bookedSeatNo => {
-      if (bookedSeatNo == seatNo) {
-        seat.classList.add('seat-disabled');
-      }
-    });
-  });
-
   // ********************************* select seats
   const seatConfirmBtn = document.querySelector('.seat-confirm-btn');
 
@@ -187,6 +199,20 @@ const seatLayout = (function () {
     console.log(selectedSeatIdList, 'seat ids of currently selected seats');
 
     const thisBookingId = dataProvider.bookTickets(thisScreening.id, thisScreening.seatprice, selectedSeatIdList);
+
+    // checking if seats available after booking
+    let noOfSeatsBooked = 0;
+    seatElements.forEach(seatElement => {
+      if (seatElement.classList.contains('seat-disabled') || seatElement.classList.contains('seat-selected')) {
+        noOfSeatsBooked++;
+      }
+    });
+    // turning seat availibility false in screening table
+    if (dataServer.getAllSeatsByScreening(thisScreening.id).length == noOfSeatsBooked) {
+      console.log('Housefull');
+      dataProvider.screeningHousefull(thisScreening.id);
+    }
+
     window.open('./ticket.html?bookingid=' + thisBookingId, '_self');
   });
 })();
