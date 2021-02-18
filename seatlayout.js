@@ -54,7 +54,6 @@ const seatLayout = (function () {
   });
   const noOfAvailableSeats = seatElements.length - noOfDisabledSeats;
 
-  console.log(noOfAvailableSeats, 'avail');
   document.getElementsByName('sradio-btn').forEach((elem, i) => {
     if (elem.value > noOfAvailableSeats) {
       elem.disabled = true;
@@ -183,7 +182,7 @@ const seatLayout = (function () {
     getSelectedSeats().forEach(selectedSeat => {
       selectedSeatNoList.push(selectedSeat.getAttribute('data-seat'));
     });
-    console.log(selectedSeatNoList, 'seat nos currently selected');
+    // console.log(selectedSeatNoList, 'seat nos currently selected');
 
     // getting seat ids of currently selected seats from seat no
     const allSeatsforScreening = dataServer.getAllSeatsByScreening(thisScreening.id);
@@ -196,7 +195,7 @@ const seatLayout = (function () {
         }
       });
     });
-    console.log(selectedSeatIdList, 'seat ids of currently selected seats');
+    // console.log(selectedSeatIdList, 'seat ids of currently selected seats');
 
     const thisBookingId = dataProvider.bookTickets(thisScreening.id, thisScreening.seatprice, selectedSeatIdList);
 
@@ -209,10 +208,15 @@ const seatLayout = (function () {
     });
     // turning seat availibility false in screening table
     if (dataServer.getAllSeatsByScreening(thisScreening.id).length == noOfSeatsBooked) {
-      console.log('Housefull');
+      // console.log('Housefull');
       dataProvider.screeningHousefull(thisScreening.id);
     }
 
     window.open('./ticket.html?bookingid=' + thisBookingId, '_self');
   });
+  return {
+    backToMoviePage: function () {
+      window.open('./movieinfo.html?movieid=' + thisMovie.id, '_self');
+    },
+  };
 })();

@@ -90,7 +90,7 @@ const movieInfo = (function () {
       DateSlide(dateListPosition);
       dateItem[i].classList.add('di-active');
       showDate = String(new Date(currentDate.getTime() + 86400000 * dateListPosition)).substring(4, 10);
-      console.log(showDate, 'date'); //Showing date
+      // console.log(showDate, 'date');
       renderTheatres();
 
       for (let a = 0; a < 8; a++) {

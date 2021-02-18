@@ -2,7 +2,8 @@ const dataProvider = (function () {
   function showscreeningsformovie(showDate, movieId) {
     const screeningsOnDate = dataServer.getScreeningsOnDate(movieId, showDate);
 
-    console.log(screeningsOnDate, 'screenings'); // showing screenings for selected movie on particular date
+    // showing screenings for selected movie on particular date
+    // console.log(screeningsOnDate, 'screenings');
     let theatresOnDate = [];
     screeningsOnDate.forEach(screening => {
       theatresOnDate.push(screening.theatreid);
@@ -22,7 +23,7 @@ const dataProvider = (function () {
         bookedSeatsIdList.push(reservedSeat.seatid);
       });
     });
-    console.log(bookedSeatsIdList, 'seat ids of booked seats');
+    // console.log(bookedSeatsIdList, 'seat ids of booked seats');
 
     // getting seat no of already booked seats from seat id
     const bookedSeatsNoList = [];
@@ -31,7 +32,7 @@ const dataProvider = (function () {
       const seat = dataServer.getSeat(seatid);
       bookedSeatsNoList.push(`${seat.row}${seat.column}`);
     });
-    console.log(bookedSeatsNoList, 'seat nos of booked seats');
+    // console.log(bookedSeatsNoList, 'seat nos of booked seats');
 
     return bookedSeatsNoList;
   }
@@ -44,7 +45,7 @@ const dataProvider = (function () {
       totalprice: seatPrice * seatIdList.length,
     });
     localStorage.setItem('bookingsTable', JSON.stringify(bookingtable));
-    console.log(JSON.parse(localStorage.getItem('bookingsTable')), 'booking added');
+    // console.log(JSON.parse(localStorage.getItem('bookingsTable')), 'booking added');
 
     const reservationTable = JSON.parse(localStorage.getItem('reservedSeatsTable'));
     seatIdList.forEach(seatid => {
@@ -54,7 +55,7 @@ const dataProvider = (function () {
       });
     });
     localStorage.setItem('reservedSeatsTable', JSON.stringify(reservationTable));
-    console.log(JSON.parse(localStorage.getItem('reservedSeatsTable')), 'seat reservation added');
+    // console.log(JSON.parse(localStorage.getItem('reservedSeatsTable')), 'seat reservation added');
     return bookingtable.length - 1;
   }
 

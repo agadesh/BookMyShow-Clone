@@ -42,4 +42,10 @@ const ticket = (function () {
 
   const showTimeElement = document.querySelector('.showtime span');
   showTimeElement.innerHTML = thisScreening.date + ', ' + thisScreening.timing;
+
+  return {
+    backToMoviePage: function () {
+      window.open('./movieinfo.html?movieid=' + thisMovie.id, '_self');
+    },
+  };
 })();
