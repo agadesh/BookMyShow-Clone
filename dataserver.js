@@ -767,11 +767,11 @@ const dataServer = (function () {
   ];
   return {
     loadTablesintoLocalStorage: function () {
-      if (localStorage.getItem('bookingsTable') == null && localStorage.getItem('reservedSeatsTable') == null && localStorage.getItem('screeningTable') == null && localStorage.getItem('allSeatsTable') == null) {
+      localStorage.setItem('screeningTable', JSON.stringify(screeningTable));
+      if (localStorage.getItem('bookingsTable') == null && localStorage.getItem('reservedSeatsTable') == null && localStorage.getItem('allSeatsTable') == null) {
         console.log('Loading tables into LocalStorage');
         localStorage.setItem('reservedSeatsTable', JSON.stringify(reservedSeatsTable));
         localStorage.setItem('bookingsTable', JSON.stringify(bookingsTable));
-        localStorage.setItem('screeningTable', JSON.stringify(screeningTable));
         dataServer.initAllSeatsTable();
         localStorage.setItem('allSeatsTable', JSON.stringify(allSeatsTable));
       }
